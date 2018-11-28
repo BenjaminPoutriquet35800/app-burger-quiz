@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<style>
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+        background: black !important;
+    }
+</style>
+
+<head>
+    <title>Socket.IO chat</title>
+    <meta charset="utf-8" />
+    <link href="./css/components.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+</head>
+
+<body>
+    <div id="game-background">
+        <!-- Ecran Ketchup -->
+        <div class="row h-50 test-container mt-2" id="team-ketchup">
+            <div class="col">
+                <div class="container d-flex h-100">
+                    <div class="row h-100 row justify-content-center align-self-center">
+                        <div class="col">
+                            <div data-points="10" id="head-bread-k" class="empty-bread mt-2"></div>
+                            <div data-points="9" id="head-tomato-k" class="empty-tomato mt-2"></div>
+                            <div data-points="8" id="head-meat-k" class="empty-meat mt-2"></div>
+                            <div data-points="7" id="cheese-k" class="empty-cheese mt-2"></div>
+                            <div data-points="6" id="head-head-k" class="empty-salad mt-2"></div>
+                            <div data-points="5" id="bread-middle-k" class="empty-bread-middle mt-2"></div>
+                            <div data-points="4" id="base-tomato-k" class="empty-tomato mt-2"></div>
+                            <div data-points="3" id="base-meat-k" class="empty-meat mt-2"></div>
+                            <div data-points="2" id="base-salad-k" class="empty-salad mt-2"></div>
+                            <div data-points="1" id="base-bread-k" class="empty-bread mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div data-points="13" id="straw-k" class="empty-straw mt-2"></div>
+                <div data-points="12" id="top-cup-k" class="empty-top-cup mt-2"></div>
+                <div data-points="11" id="cup-k" class="empty-cup mt-2"></div>
+            </div>
+            <div class="col">
+                <div data-points="17" id="ketchup-k" class="empty-ketchup mt-2 ml-4"></div>
+                <div data-points="16" id="mayo-k" class="empty-mayo mt-2 ml-4"></div>
+                <div class="row mt-2">
+                    <div data-points="15" id="salt-k" class="empty-salt"></div>
+                    <div data-points="14" id="pepper-k" class="empty-pepper"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row ml-4">
+                    <div data-points="25" id="frie-1-k" class="empty-frie m-2"></div>
+                    <div data-points="24" id="frie-2-k" class="empty-frie m-2"></div>
+                    <div data-points="23" id="frie-3-k" class="empty-frie m-2"></div>
+                    <div data-points="22" id="frie-4-k" class="empty-frie m-2"></div>
+                    <div data-points="21" id="frie-5-k" class="empty-frie m-2"></div>
+                </div>
+                <div class="row ml-4">
+                    <div data-points="20" id="frie-1-k" class="empty-frie m-2"></div>
+                    <div data-points="20" id="frie-1-k" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-k" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-k" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-k" class="empty-frie m-2"></div>
+                </div>
+                <div data-points="18" id="bucket-k" class="empty-bucket"></div>
+            </div>
+            <div class="col">
+                <!-- Section points -->
+                <div class="row">
+                    <div class="point-ketchup mr-2 d-flex justify-content-center">
+                        <p id="point-ketchup-decade">0</p>
+                    </div>
+                    <div class="point-ketchup mr-2 d-flex justify-content-center">
+                        <p id="point-ketchup-unit">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Ecran Mayo -->
+        <div class="row h-50" id="team-mayo">
+            <div class="col">
+                <div class="container d-flex h-100">
+                    <div class="row h-100 row justify-content-center align-self-center">
+                        <div class="col">
+                            <div data-points="10" id="head-bread-m" class="empty-bread mt-2"></div>
+                            <div data-points="9" id="head-tomato-m" class="empty-tomato mt-2"></div>
+                            <div data-points="8" id="head-meat-m" class="empty-meat mt-2"></div>
+                            <div data-points="7" id="cheese-m" class="empty-cheese mt-2"></div>
+                            <div data-points="6" id="head-head-m" class="empty-salad mt-2"></div>
+                            <div data-points="5" id="bread-middle-m" class="empty-bread-middle mt-2"></div>
+                            <div data-points="4" id="base-tomato-m" class="empty-tomato mt-2"></div>
+                            <div data-points="3" id="base-meat-m" class="empty-meat mt-2"></div>
+                            <div data-points="2" id="base-salad-m" class="empty-salad mt-2"></div>
+                            <div data-points="1" id="base-bread-m" class="empty-bread mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div data-points="13" id="straw-m" class="empty-straw mt-2"></div>
+                <div data-points="12" id="top-cup-m" class="empty-top-cup mt-2"></div>
+                <div data-points="11" id="cup-m" class="empty-cup mt-2"></div>
+            </div>
+            <div class="col">
+                <div data-points="17" id="ketchup-m" class="empty-ketchup mt-2 ml-4"></div>
+                <div data-points="16" id="mayo-m" class="empty-mayo mt-2 ml-4"></div>
+                <div class="row mt-2">
+                    <div data-points="15" id="salt-m" class="empty-salt"></div>
+                    <div data-points="14" id="pepper-m" class="empty-pepper"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row ml-4">
+                    <div data-points="25" id="frie-1-m" class="empty-frie m-2"></div>
+                    <div data-points="24" id="frie-2-m" class="empty-frie m-2"></div>
+                    <div data-points="23" id="frie-3-m" class="empty-frie m-2"></div>
+                    <div data-points="22" id="frie-4-m" class="empty-frie m-2"></div>
+                    <div data-points="21" id="frie-5-m" class="empty-frie m-2"></div>
+                </div>
+                <div class="row ml-4">
+                    <div data-points="20" id="frie-1-m" class="empty-frie m-2"></div>
+                    <div data-points="20" id="frie-1-m" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-m" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-m" class="empty-frie m-2"></div>
+                    <div data-points="19" id="frie-1-m" class="empty-frie m-2"></div>
+                </div>
+                <div data-points="18" id="bucket-k" class="empty-bucket"></div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="point-mayo mr-2 d-flex justify-content-center">
+                        <p id="point-mayo-decade">0</p>
+                    </div>
+                    <div class="point-mayo mr-2 d-flex justify-content-center">
+                        <p id="point-mayo-unit">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Buzz -->
+    <div id="modal-buzz">
+
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/client-game.js"></script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<style>
+  html,
+    body {
+      height: 100%;   
+      overflow: hidden;  
+      background: black !important;
+    }
+  </style>
+
+<head>
+  <title>Socket.IO chat</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div>
+        <img src="./images/backgrounds/menus.svg" width="500px;" />
+      </div>
+    </div>
+    <div class="jumbotron mt-4">
+      <div class="row justify-content-center">
+        <h1>Télécommand Admin</h1>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-6 col-sm-6 text-center">
+          <input id="button-add-point-ketchup" type="button" class="btn btn-danger btn-lg" value="+ Point" />
+          <input id="button-remove-point-ketchup" type="button" class="btn btn-danger btn-lg" value="- Point" />
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center">
+          <input id="button-add-point-mayo" type="button" class="btn btn-warning btn-lg" value="+ Point" />
+          <input id="button-remove-point-mayo" type="button" class="btn btn-warning btn-lg" value="- Point" />
+        </div>
+      </div>
+      <div class="row justify-content-center mt-4">
+        <input class="btn btn-success btn-lg" type="button" value="Recharger partie" id="button-reload-part"/>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="./js/client-admin.js"></script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<style>
+  html,
+    body {
+      height: 100%;
+    }
+  </style>
+<head>
+  <title>Socket.IO chat</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous" />
+</head>
+<body style="background:black;">
+  <audio id="sound1" src="./sounds/buzz.mp3" preload="auto"></audio>
+  <div class="container h-100">
+    <div class="row align-items-center h-100">
+      <div class="col-6 mx-auto">
+        <input id="buzz-button-ketchup" type="image" src="./images/teams/ketchup.svg" />
+      </div>
+      <div class="col-6 mx-auto">
+        <input id="buzz-button-mayo" type="image" src="./images/teams/mayo.svg" />
+      </div>
+    </div>
+  </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  $("#buzz-button-ketchup").click(function () {
+    socket.emit("msg", "equipe-ketchup");
+  });
+  $("#buzz-button-mayo").click(function () {
+    socket.emit("msg", "equipe-mayo");
+  });
+
+  socket.on("buzz", function (response) {
+    document.getElementById("sound1").play();
+  });
+</script>
+
+</html>

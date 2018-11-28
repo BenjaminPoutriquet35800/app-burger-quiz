@@ -1,0 +1,244 @@
+.point-facet-1 {
+    clip-path: polygon(9% 13%, 73% 9%, 75% 100%, 0% 100%);
+    width: 250px;
+    height: 250px;
+    padding-top: 20px;
+    padding-left: 70px;
+}
+
+.point-facet-2 {
+    clip-path: polygon(10% 3%, 73% 9%, 75% 100%, 3% 93%);
+    width: 250px;
+    height: 250px;
+    padding-left: 70px;
+    padding-top: 20px;
+}
+
+.point-facet-1,
+.point-facet-2>p {
+    font-size: 128px;
+    color: white;
+}
+
+.bread {
+    background: #DEAA70;
+    height: 50px;
+    width: 200px;
+}
+
+.empty-bread {
+    border: 2px white dotted;
+    height: 50px;
+    width: 200px;
+}
+
+.bread-middle {
+    background: #DEAA70;
+    height: 30px;
+    width: 200px;
+}
+
+.empty-bread-middle {
+    border: 2px white dotted;
+    height: 30px;
+    width: 200px;
+}
+
+.salad {
+    background: #5F8547;
+    height: 10px;
+    width: 200px;
+}
+
+.empty-salad {
+    border: 2px white dotted;
+    height: 10px;
+    width: 200px;
+}
+
+.meat {
+    background: #8D5341;
+    height: 20px;
+    width: 200px;
+}
+
+.empty-meat {
+    border: 2px white dotted;
+    height: 20px;
+    width: 200px;
+}
+
+.cheese {
+    background: #E0C800;
+    height: 20px;
+    width: 200px;
+}
+
+.empty-cheese {
+    border: 2px white dotted;
+    height: 20px;
+    width: 200px;
+}
+
+.tomato {
+    background: #C87269;
+    height: 20px;
+    width: 200px;
+}
+
+.empty-tomato {
+    border: 2px white dotted;
+    height: 20px;
+    width: 200px;
+}
+
+.cup {
+    background: #71CFFF;
+    height: 250px;
+    width: 150px;
+}
+
+.empty-cup {
+    border: 2px white dotted;
+    height: 250px;
+    width: 150px;
+}
+
+.top-cup {
+    background: #ABC7F8;
+    height: 10px;
+    width: 150px;
+}
+
+.empty-top-cup {
+    border: 2px white dotted;
+    height: 10px;
+    width: 150px;
+}
+
+.straw {
+    background: red;
+    height: 80px;
+    width: 10px;
+}
+
+.empty-straw {
+    border: 2px white dotted;
+    height: 80px;
+    width: 10px;
+}
+
+.salt {
+    background: white;
+    border: 2px darkgray solid;
+    width: 50px;
+    height: 50px;
+}
+
+.empty-salt {
+    border: 2px white dotted;
+    width: 50px;
+    height: 50px;
+}
+
+.empty-pepper {
+    border: 2px white dotted;
+    width: 50px;
+    height: 50px;
+}
+
+.pepper {
+    background: gray;
+    width: 50px;
+    height: 50px;
+}
+
+.mayo {
+    background: #E0C800;
+    height: 100px;
+    width: 20px;
+}
+
+.ketchup {
+    background: #C71000;
+    height: 100px;
+    width: 20px;
+}
+
+.empty-mayo {
+    border: 2px white dotted;
+    height: 100px;
+    width: 20px;
+}
+
+.empty-ketchup {
+    border: 2px white dotted;
+    height: 100px;
+    width: 20px;
+}
+
+.bucket {
+    background: #C71000;
+    height: 180px;
+    width: 200px;
+}
+
+.empty-bucket {
+    border: 2px white dotted;
+    height: 180px;
+    width: 200px;
+}
+
+.frie {
+    background: #E0C800;
+    height: 60px;
+    width: 15px;
+}
+
+.empty-frie {
+    border: 2px white dotted;
+    height: 60px;
+    width: 15px;
+}
+
+.point-ketchup {
+    background: #C71000;
+    width: 150px;
+    height: 150px;
+}
+
+.point-mayo {
+    background: #E0C800;
+    width: 150px;
+    height: 150px;
+}
+
+.point-mayo,
+.point-ketchup>p {
+    font-size: 112px;
+    color: white;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.test-container {
+    border: 1px black solid;
+}
+
+.mayo-color {
+    background: #E0C800;
+}
+
+.ketchup-color {
+    background: #C71000;
+}
+
+.buzz:hover {
+    transition: background-color 0.5s ease;
+    background-color: transparent;    
+    height:100% ;
+}
+
+.buzz {
+    background: red;
+    height:100% ;
+}
