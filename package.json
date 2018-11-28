@@ -1,0 +1,20 @@
+{
+  "name": "app-burger-quiz",
+  "version": "1.0.0",
+  "description": "Application pour jouer à burger-quiz",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "bcrypt-nodejs":"^0.0.3",
+    "socket.io": "^2.1.1",
+    "connect-flash":"^0.1.1",
+    "passport":"^0.4.0",
+    "body-parser":"^1.18.3",
+    "express-session":"^1.15.6"
+  },
+  "author": "Poutriquet Benjamin",
+  "license": "MIT"
+}
