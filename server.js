@@ -1,56 +1,42 @@
-var express = require('express');
-var app = express();
-var http = require("http").Server(app);
-var io = require("socket.io")(http);
+const express = require('express');
+const app = express();
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
-var flash    = require('connect-flash')
-var passport = require('passport');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
+const flash = require('connect-flash')
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const session = require('express-session');
 
-app.use(express.static(__dirname + '/views/public'));
-app.use(bodyParser()); 
+const messages = require('./config/messages-socket');
 
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(express.static(__dirname + '/views/public/'));
+app.use(bodyParser());
+
+app.use(session({
+  secret: 'ilovescotchscotchyscotchscotch'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// Import du module passport
-require('./config/passport') (passport);
-// Import des routes
-require('./app/routes')(app,passport);
-
-// Import des models
-var User = require('./app/models/user');
-var Team = require('./app/models/team');
+require('./config/passport')(passport);
+require('./app/routes')(app, __dirname);
 
 var pointsMayo = 0;
 var pointsKetchup = 0;
 
-const messageAdd = 'add'
-const messageReloadPart = 'event-reload-part';
-const messageMayoTeam = 'event-point-mayo';
-const messageKetchupTeam = 'event-point-ketchup';
-
-const messageClientsNeedPointsInformations = 'need-information-points';
-
-const messageToClientReloadPart = 'reload-part';
-const messageToClientMayo = 'point-mayo';
-const messageToClientKetchup = 'point-ketchup';
-const messageToClientReceivePoints = 'receive-points-teams';
-
 io.on("connection", function (socket) {
 
-  socket.on(messageClientsNeedPointsInformations, function () {
+  socket.on(messages.messageClientsNeedPointsInformations, function () {
     // On emet dès que le client se connecte
-    io.emit(messageToClientReceivePoints, pointsMayo, pointsKetchup);
+    io.emit(messages.messageToClientReceivePoints, pointsMayo, pointsKetchup);
   });
 
   socket.on("disconnect", function () {});
 
-  socket.on(messageMayoTeam, function (message) {
-    if (message === messageAdd) {
+  socket.on(messages.messageMayoTeam, function (message) {
+    if (message === messages.messageAdd) {
       pointsMayo++;
     } else {
       pointsMayo--;
@@ -61,11 +47,12 @@ io.on("connection", function (socket) {
     if (pointsMayo <= 0) {
       pointsMayo = 0
     }
-    io.emit(messageToClientMayo, pointsMayo);
+    io.emit(messages.messageToClientMayo, pointsMayo);
   });
 
-  socket.on(messageKetchupTeam, function (message) {
-    if (message === messageAdd) {
+  socket.on(messages.messageKetchupTeam, function (message) {
+    console.log(message);
+    if (message === messages.messageAdd) {
       pointsKetchup++;
     } else {
       pointsKetchup--;
@@ -76,13 +63,13 @@ io.on("connection", function (socket) {
     if (pointsKetchup <= 0) {
       pointsKetchup = 0
     }
-    io.emit(messageToClientKetchup, pointsKetchup);
+    io.emit(messages.messageToClientKetchup, pointsKetchup);
   });
 
-  socket.on(messageReloadPart, function () {
+  socket.on(messages.messageReloadPart, function () {
     pointsMayo = 0;
     pointsKetchup = 0;
-    io.emit(messageToClientReloadPart);
+    io.emit(messages.messageToClientReloadPart);
   });
 
 });

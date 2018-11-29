@@ -1,33 +1,28 @@
-module.exports = function (app, passport) {
+module.exports = function (app, baseDirname) {
 
-  var LocalStrategy = require('passport-local').Strategy;
-
-  var basePath = '/views/';
+  /**
+   * Le chemin de base où se trouve les views
+   */
+  const basePathViews = baseDirname + '/views/';
 
   app.get("/", function (req, res) {
-    res.sendFile(__dirname + basePath + "team-choice.html");
+    res.sendFile(basePathViews + "team-choice.html");
   });
 
-  app.get("/admin", isLoggedIn, function (req, res) {
-    res.sendFile(__dirname + basePath + "admin.html");
+  app.get("/admin", function (req, res) {
+    res.sendFile(basePathViews + "admin.html");
   });
 
   app.get("/login", function (req, res) {
-    res.sendFile(__dirname + basePath + "login.html");
+    res.sendFile(basePathViews + "login.html");
   });
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-  }));
-
   app.get("/teams", function (req, res) {
-    res.sendFile(__dirname + basePath + "team-choice.html");
+    res.sendFile(bbasePathViews + "team-choice.html");
   });
 
   app.get("/game", function (req, res) {
-    res.sendFile(__dirname + basePath + "game.html");
+    res.sendFile(basePathViews + "game.html");
   });
 
   /**

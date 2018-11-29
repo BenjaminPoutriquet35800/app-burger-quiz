@@ -1,6 +1,6 @@
 function Team() {
     this.points = 0;
-    this.teamName = null;
+    this.name = null;
     /**
      * Incrémente les points de l'équipe
      */
