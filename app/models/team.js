@@ -1,6 +1,9 @@
-function Team() {
+/**
+ * Entité équipe
+ */
+function Team(name) {
     this.points = 0;
-    this.name = null;
+    this.name = name;
     /**
      * Incrémente les points de l'équipe
      */

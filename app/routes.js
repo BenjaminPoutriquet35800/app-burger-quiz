@@ -1,8 +1,8 @@
-module.exports = function (app, baseDirname, passport) {
+module.exports = function (app, passport) {
   /**
    * Le chemin de base où se trouve les views
    */
-  const basePathViews = baseDirname + '/views/';
+  const basePathViews = app.get('views'); 
 
   /**
    * Route par défaut choix des équipes
@@ -41,12 +41,12 @@ module.exports = function (app, baseDirname, passport) {
       failureRedirect: '/login',
       failureFlash: true
     })
-  );  
+  );
 
   /**
    * Télécommande admin pour animer le jeu
    */
-  app.get("/admin", isLoggedIn, function (req, res) {
+  app.get("/admin", function (req, res) {
     res.sendFile(basePathViews + "admin.html");
   });
 

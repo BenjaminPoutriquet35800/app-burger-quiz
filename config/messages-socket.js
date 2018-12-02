@@ -1,5 +1,5 @@
 module.exports = Object.freeze({
-    messageConnected: 'connected',
+    messageConnection: 'connection',
     messageDisconnected : 'disconnect',
     messageAdd : 'add',
     messageReloadPart : 'event-reload-part',

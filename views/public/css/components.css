@@ -220,6 +220,36 @@
     font-family: 'Cabin Sketch', cursive;
 }
 
+.base-button {
+    font-size: 112px;
+    color: white;
+    font-family: 'Cabin Sketch', cursive;
+    border-radius: 4px;
+    border: none;
+    text-align: top;
+    line-height: 0px;
+    width: 100px;
+    height: 100px;
+}
+
+.base-button:hover {
+    cursor: pointer;
+}
+
+.button-ketchup {
+    background: #C71000;
+}
+.button-ketchup:active {
+    background: #AE0E00;
+}
+
+.button-mayo {
+    background: #E0C800;
+}
+.button-mayo:active {
+    background: #C7B100;
+}
+
 .test-container {
     border: 1px black solid;
 }
@@ -234,11 +264,11 @@
 
 .buzz:hover {
     transition: background-color 0.5s ease;
-    background-color: transparent;    
-    height:100% ;
+    background-color: transparent;
+    height: 100%;
 }
 
 .buzz {
     background: red;
-    height:100% ;
+    height: 100%;
 }

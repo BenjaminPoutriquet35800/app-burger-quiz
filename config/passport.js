@@ -1,4 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
+const User = require('../app/models/User');
 
 // expose this function to our app using module.exports
 module.exports = function (passport) {
@@ -29,14 +30,15 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, username, password, done) {
-            console.log(req);
-            console.log('username : ' + username);
-            console.log('password : ' + password)
-            if(username === 'toto'){
-                done(null,{ user: username });
-            }else{
+            if (username.toLowerCase() === 'toto') {
+                let user = new User();
+                user.username = username;
+                user.password = password;
+                user.title = 'admin';
+                done(null, user);
+            } else {
                 done(null, false);
-            }           
+            }
         }
     ));
 };
