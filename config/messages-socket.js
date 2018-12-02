@@ -1,4 +1,6 @@
 module.exports = Object.freeze({
+    messageConnected: 'connected',
+    messageDisconnected : 'disconnect',
     messageAdd : 'add',
     messageReloadPart : 'event-reload-part',
     messageMayoTeam : 'event-point-mayo',

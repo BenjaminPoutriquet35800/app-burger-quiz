@@ -1,6 +1,4 @@
-var LocalStrategy = require('passport-local').Strategy;
-
-var User = require('../app/models/user');
+const LocalStrategy = require('passport-local').Strategy;
 
 // expose this function to our app using module.exports
 module.exports = function (passport) {
@@ -13,14 +11,12 @@ module.exports = function (passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function (user, done) {
-        // done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function (id, done) {
-        // User.findById(id, function (err, user) {
-        //     done(err, user);
-        // });
+    passport.deserializeUser(function (user, done) {
+        done(null, user);
     });
 
     // =========================================================================
@@ -29,9 +25,18 @@ module.exports = function (passport) {
     // we are using named strategies since we have one for login and one for signup
     // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-signup', new LocalStrategy({
-        passReqToCallback: true
-    }, function (req, username, password, done) {
-        console.log(req);
-    }));
+    passport.use(new LocalStrategy({
+            passReqToCallback: true
+        },
+        function (req, username, password, done) {
+            console.log(req);
+            console.log('username : ' + username);
+            console.log('password : ' + password)
+            if(username === 'toto'){
+                done(null,{ user: username });
+            }else{
+                done(null, false);
+            }           
+        }
+    ));
 };

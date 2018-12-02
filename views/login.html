@@ -20,14 +20,14 @@
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">Authentification</h5>
-                        <form class="form-signin">
+                        <form class="form-signin" action="/login" method="post">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Login" required
-                                    autofocus>
+                                <input type="text" id="inputEmail" class="form-control" placeholder="Login" required
+                                name="username" autofocus>
                             </div>
                             <div class="form-label-group mt-4">
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe"
-                                    required>
+                                name="password" required>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3">

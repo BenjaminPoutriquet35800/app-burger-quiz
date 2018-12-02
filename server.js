@@ -20,8 +20,10 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+// Configuration de passport
 require('./config/passport')(passport);
-require('./app/routes')(app, __dirname);
+// On l'inject dans le router
+require('./app/routes')(app, __dirname, passport);
 
 var pointsMayo = 0;
 var pointsKetchup = 0;
@@ -33,7 +35,7 @@ io.on("connection", function (socket) {
     io.emit(messages.messageToClientReceivePoints, pointsMayo, pointsKetchup);
   });
 
-  socket.on("disconnect", function () {});
+  socket.on(messages.messageConnected, function () {});
 
   socket.on(messages.messageMayoTeam, function (message) {
     if (message === messages.messageAdd) {

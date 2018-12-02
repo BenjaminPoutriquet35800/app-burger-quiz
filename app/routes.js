@@ -1,28 +1,53 @@
-module.exports = function (app, baseDirname) {
-
+module.exports = function (app, baseDirname, passport) {
   /**
    * Le chemin de base où se trouve les views
    */
   const basePathViews = baseDirname + '/views/';
 
+  /**
+   * Route par défaut choix des équipes
+   */
   app.get("/", function (req, res) {
     res.sendFile(basePathViews + "team-choice.html");
   });
 
-  app.get("/admin", function (req, res) {
-    res.sendFile(basePathViews + "admin.html");
+  /**
+   * Choix des équipes
+   */
+  app.get("/teams", function (req, res) {
+    res.sendFile(basePathViews + "team-choice.html");
   });
 
+  /**
+   * Ecran de jeu
+   */
+  app.get("/game", function (req, res) {
+    res.sendFile(basePathViews + "game.html");
+  });
+
+  /** Securité */
+
+  /**
+   * Formulaire de login
+   */
   app.get("/login", function (req, res) {
     res.sendFile(basePathViews + "login.html");
   });
 
-  app.get("/teams", function (req, res) {
-    res.sendFile(bbasePathViews + "team-choice.html");
-  });
+  // Permet d'authentifier l'admin
+  app.post('/login',
+    passport.authenticate('local', {
+      successRedirect: '/admin',
+      failureRedirect: '/login',
+      failureFlash: true
+    })
+  );  
 
-  app.get("/game", function (req, res) {
-    res.sendFile(basePathViews + "game.html");
+  /**
+   * Télécommande admin pour animer le jeu
+   */
+  app.get("/admin", isLoggedIn, function (req, res) {
+    res.sendFile(basePathViews + "admin.html");
   });
 
   /**
