@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Equipes</title>
+  <% include ./partials/header %>
+</head>
+
+<body>
+  <div class="container h-100">
+    <div class="row align-items-center h-100">
+      <div class="col-6 mx-auto">
+        <input id="buzz-button-ketchup" type="image" src="./images/teams/ketchup.svg" value="ketchup" />
+      </div>
+      <div class="col-6 mx-auto">
+        <input id="buzz-button-mayo" type="image" src="./images/teams/mayo.svg" value="mayo" />
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+  // La base de l'url de redirection
+  var baseRedirectUrl = '/buzzer';
+  // Events
+  $('#buzz-button-ketchup').click(function () {
+    location.href = baseRedirectUrl + '?team=ketchup';
+  });
+  $('#buzz-button-mayo').click(function () {
+    location.href = baseRedirectUrl + '?team=mayo';
+  });
+</script>
+
+</html>
