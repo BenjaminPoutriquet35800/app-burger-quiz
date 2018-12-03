@@ -10,11 +10,12 @@
     <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="mx-auto">
-                <button>
-                    <%= team %></button>
+                <input type="hidden" value="<%= team %>" id="team-hf-val"/>
+                <button id="buzz-button">buzz</button>
             </div>
         </div>
     </div>
 </body>
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="./js/client-buzzer.js"></script>
 </html>

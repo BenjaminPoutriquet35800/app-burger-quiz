@@ -39,6 +39,12 @@ module.exports = function (io) {
             teamMayo.points = 0;
             teamKetchup.points = 0;
             io.emit(messages.messageToClientReloadPart);
+        })
+        /**
+         * Se produit lorsqu'un client buzz
+         */
+        socket.on(messages.messageClientSendBuzz, function (teamName) {
+            io.emit('event-buzz', teamName);
         });
 
         /**

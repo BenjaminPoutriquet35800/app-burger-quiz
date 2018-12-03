@@ -4,6 +4,7 @@ $pointMayoDecade = $('#point-mayo-decade');
 $pointMayoUnit = $('#point-mayo-unit');
 
 $modalBuzz = $('#modal-buzz');
+$mainBackground = $('#game-background');
 
 var socket = null;
 
@@ -153,11 +154,42 @@ const initSocketAndListenEvents = function () {
         attributePointsAtTeam(mayo, pointsMayo);
         attributePointsAtTeam(ketchup, pointsKetchup);
     });
+    socket.on('event-buzz',function(teamName) {
+        console.log(teamName);
+
+        if(teamName === ketchup) {
+            $mainBackground.hide();
+            $modalBuzz.hide();
+            $modalBuzz.animation({
+                background : 'ketchup-color'
+            });
+            // $modalBuzz.delay(0).fadeIn();
+            // $modalBuzz.toggleClass('ketchup-color');
+        }
+        else if(teamName === mayo) {
+
+        }else{
+            console.log('Impossible de faire le buzz car valeur indéterminée : ' + teamName)
+        }
+    });
 
     // On souhaite connaitre le nombre de points
     socket.emit(messageClientsNeedPointsInformations);
 }
 
+const receiveBuzzAndInteractOnView = function () {
+
+}
+
+
 registerComponents();
 
 initSocketAndListenEvents();
+
+// $modalBuzz.css({
+//     "opacity": "0",
+//     "display": "block",
+//     "background": "red"
+// }).show().animate({
+//     opacity: 1
+// })

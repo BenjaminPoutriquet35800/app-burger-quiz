@@ -4,3 +4,8 @@ body {
     overflow: hidden;
     background: black !important;
 }
+
+#modal-buzz {
+    height: 100%;
+    display: none
+}
