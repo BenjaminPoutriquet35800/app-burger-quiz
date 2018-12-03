@@ -13,6 +13,9 @@ const ketchup = 'team-ketchup';
 const componentsMayo = [];
 const componentsKetchup = [];
 
+const mayoColor = '#E0C800';
+const ketchupColor = '#C71000';
+
 /**
  * Prop css convention
  */
@@ -25,6 +28,7 @@ const messageClientMayo = 'point-mayo';
 const messageClientKetchup = 'point-ketchup';
 const messageToClientReloadPart = 'reload-part';
 const messageToClientReceivePoints = 'receive-points-teams';
+const messageToClientReceiveBuzz = 'receive-buzz';
 
 /**
  * Les messages qu'envoie le client
@@ -135,52 +139,77 @@ const populateCollectionComponents = function (collection, containerId) {
     }
 }
 
+/** 
+ * Se charge d'interargir avec la vue
+ * Affiche un background de buzz différent 
+ * Sur l'écran suivant le nom de l'équipe 
+ * @param {*} teamName Le nom de l'équipe
+ */
+const receiveBuzzAndInteractOnView = function (teamName) {
+    let color = null;
+    if (teamName === ketchup) {
+        color = ketchupColor;
+    }
+    else if (teamName === mayo) {
+        color = mayoColor;
+    } else {
+        console.log('Impossible de faire le buzz car valeur indéterminée : ' + teamName)
+    }
+    if (!color)
+        return;
+    $mainBackground.hide();
+    $modalBuzz.show();
+    $modalBuzz.fadeIn(0, function () {
+        $(this).css('background', color).fadeOut(500, function () {            
+            $modalBuzz.hide();
+            $mainBackground.show();
+        });
+    });
+}
+
 /**
  * Initialise la socket et ecoute les eventuelles messages
  */
 const initSocketAndListenEvents = function () {
     socket = io();
+    /**
+     * Points pour l'équipe mayo
+     */
     socket.on(messageClientMayo, function (points) {
         attributePointsAtTeam(mayo, points);
     });
+    /**
+     * Points pour l'équipe ketchup
+     */
     socket.on(messageClientKetchup, function (points) {
         attributePointsAtTeam(ketchup, points);
     });
+    /**
+     * Rechargement de la partie
+     */
     socket.on(messageToClientReloadPart, function () {
         attributePointsAtTeam(mayo, 0);
         attributePointsAtTeam(ketchup, 0);
     });
+    /**
+     * Reception des points des différents équipes
+     */
     socket.on(messageToClientReceivePoints, function (pointsMayo, pointsKetchup) {
         attributePointsAtTeam(mayo, pointsMayo);
         attributePointsAtTeam(ketchup, pointsKetchup);
     });
-    socket.on('event-buzz',function(teamName) {
-        console.log(teamName);
-
-        if(teamName === ketchup) {
-            $mainBackground.hide();
-            $modalBuzz.hide();
-            $modalBuzz.animation({
-                background : 'ketchup-color'
-            });
-            // $modalBuzz.delay(0).fadeIn();
-            // $modalBuzz.toggleClass('ketchup-color');
-        }
-        else if(teamName === mayo) {
-
-        }else{
-            console.log('Impossible de faire le buzz car valeur indéterminée : ' + teamName)
-        }
+    /**
+     * Réception de l'évènement du buzzer
+     */
+    socket.on(messageToClientReceiveBuzz, function (teamName) {
+        receiveBuzzAndInteractOnView(teamName);
     });
-
-    // On souhaite connaitre le nombre de points
+    /**
+     * On souhaite connaitre le nombre de points
+     * Dès que l'on se connecte sur la page
+     */
     socket.emit(messageClientsNeedPointsInformations);
 }
-
-const receiveBuzzAndInteractOnView = function () {
-
-}
-
 
 registerComponents();
 

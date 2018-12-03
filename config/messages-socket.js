@@ -24,4 +24,5 @@ module.exports = Object.freeze({
     messageToClientMayo: 'point-mayo',
     messageToClientKetchup: 'point-ketchup',
     messageToClientReceivePoints: 'receive-points-teams',
+    messageToClientReceiveBuzz: 'receive-buzz',
 });

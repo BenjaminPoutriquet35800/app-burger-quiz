@@ -44,7 +44,7 @@ module.exports = function (io) {
          * Se produit lorsqu'un client buzz
          */
         socket.on(messages.messageClientSendBuzz, function (teamName) {
-            io.emit('event-buzz', teamName);
+            io.emit(messages.messageToClientReceiveBuzz, teamName);
         });
 
         /**
