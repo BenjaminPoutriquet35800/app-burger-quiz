@@ -4,6 +4,10 @@ module.exports = function (io) {
 
     const teamMayo = new Team('mayo');
     const teamKetchup = new Team('ketchup');
+    /**
+     * Etat du buzzer
+     */
+    var buzzerIsLock = true;
 
     /**
      * Init Socket
@@ -18,7 +22,10 @@ module.exports = function (io) {
          */
         socket.on(messages.messageClientsNeedPointsInformations, function () {
             io.emit(messages.messageToClientReceivePoints, teamMayo.points, teamKetchup.points);
-        });        
+        });    
+        socket.on(messages.messageClientNeedStateBuzzer, function () {
+            io.emit(messages.messageToClientReceiveStateBuzzer, buzzerIsLock);
+        });     
         /**
          *  Manage les points de la team mayo
          */
@@ -35,18 +42,21 @@ module.exports = function (io) {
          * Se charge de bloquer les buzzers 
          */
         socket.on(messages.messageLockBuzz, function () {
+            buzzerIsLock = true;
             io.emit(messages.messageToClientLockBuzz)
         });
         /**
          * Se charge de débloquer les buzzers 
          */
         socket.on(messages.messageUnLockBuzz, function () {
+            buzzerIsLock = false;
             io.emit(messages.messageToClientUnLockBuzz)
         });
         /**
          * Recharge la partie
          */
         socket.on(messages.messageReloadPart, function () {
+            buzzerIsLock = true;
             teamMayo.points = 0;
             teamKetchup.points = 0;
             io.emit(messages.messageToClientReloadPart);

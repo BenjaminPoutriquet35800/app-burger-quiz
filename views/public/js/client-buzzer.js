@@ -8,11 +8,13 @@ var socket = null;
  */
 const messageToClientLockBuzz = 'receive-lock-buzz';
 const messageToClientUnLockBuzz = 'receive-unlock-buzz';
+const messageToClientReceiveStateBuzzer = 'receive-state-buzzer';
 
 /**
  * Les messages qu'envoie le client
  */
 const messageClientSendBuzz = 'on-buzz';
+const messageClientNeedStateBuzzer = 'need-state-buzzer';
 
 /**
  * Les styles css
@@ -40,6 +42,14 @@ const initEvents = function () {
  */
 const initSocketAndListenEvents = function () {
     socket = io();
+    socket.on(messageToClientReceiveStateBuzzer, function (buzzerIsLocked) {
+console.log(buzzerIsLocked);
+        if (buzzerIsLocked) {
+            $buzzButton.addClass(lockBuzzerStyle);
+        } else {
+            $buzzButton.removeClass(lockBuzzerStyle);
+        }
+    })
     /**
      * Bloquer le buzzer
      */
@@ -52,6 +62,11 @@ const initSocketAndListenEvents = function () {
     socket.on(messageToClientUnLockBuzz, function () {
         $buzzButton.removeClass(lockBuzzerStyle);
     });
+    /**
+     * On souhaite connaitre l'état du buzzer
+     * Dès que l'on se connecte sur la page
+     */
+    socket.emit(messageClientNeedStateBuzzer);
 }
 
 initSocketAndListenEvents();

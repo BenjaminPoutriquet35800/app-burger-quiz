@@ -4,11 +4,14 @@
 <head>
     <title>Buzzer</title>
     <% include ./partials/header %>
+    <!-- Permet de ne pas faire de zoom 
+    Lorsque l'utilisateur est sur mobile et qu'il spam le click -->
+    <meta name='viewport' content='user-scalable=0' />
 </head>
 
 <body>
     <div class="container-fluid h-100">
-        <div class="row justify-content-end h-25">            
+        <div class="row justify-content-end h-25">
             <!-- Affichage du logo de l'équipe -->
             <%if (team === 'team-mayo') {%>
             <input type="image" src="./images/teams/mayo.svg" class="img-fluid" width="10%" />
@@ -20,7 +23,7 @@
         <div class="row justify-content-around h-75" id="buzzer-container">
             <div class="mx-auto">
                 <input type="hidden" value="<%= team %>" id="team-hf-val" />
-                <input id="buzz-button" type="image" src="./images/buzzer/burger-buzzer.png"/>
+                <input id="buzz-button" type="image" src="./images/buzzer/burger-buzzer.png" />
             </div>
         </div>
     </div>

@@ -19,6 +19,7 @@ module.exports = Object.freeze({
      */
     messageClientSendBuzz: 'on-buzz',
     messageClientsNeedPointsInformations: 'need-information-points',
+    messageClientNeedStateBuzzer: 'need-state-buzzer',
     /**
      * Les messages à envoyer aux clients
      */
@@ -29,4 +30,5 @@ module.exports = Object.freeze({
     messageToClientReceiveBuzz: 'receive-buzz',
     messageToClientLockBuzz: 'receive-lock-buzz',
     messageToClientUnLockBuzz: 'receive-unlock-buzz',
+    messageToClientReceiveStateBuzzer:'receive-state-buzzer',
 });
