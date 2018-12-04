@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Telecommande Admin</title>  
+  <title>Telecommande Admin</title>
   <% include ./partials/header %>
 </head>
 
@@ -27,11 +28,16 @@
         </div>
       </div>
       <div class="row justify-content-center mt-4">
-        <input class="btn btn-success btn-lg" type="button" value="Recharger partie" id="button-reload-part"/>
+        <input class="btn btn-secondary btn-lg mr-2" type="button" value="Bloquer buzzer" id="button-lock-buzz" />
+        <input class="btn btn-secondary btn-lg" type="button" value="Débloquer buzzer" id="button-unlock-buzz" />
+      </div>
+      <div class="row justify-content-center mt-4">
+        <input class="btn btn-success btn-lg" type="button" value="Recharger partie" id="button-reload-part" />
       </div>
     </div>
   </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/client-admin.js"></script>
+
 </html>

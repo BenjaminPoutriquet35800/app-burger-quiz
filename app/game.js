@@ -10,28 +10,39 @@ module.exports = function (io) {
      */
     io.on(messages.messageConnection, function (socket) {
         /**
-         *  On emet dès que le client se connecte et demande l'info des points
-         */
-        socket.on(messages.messageClientsNeedPointsInformations, function () {
-            io.emit(messages.messageToClientReceivePoints, teamMayo.points, teamKetchup.points);
-        });
-        /**
          *  Se produit lors d'une déconnexion utilisateur
          */
         socket.on(messages.messageDisconnected, function () {});
         /**
-         *  Manage la team mayo
+         *  On emet dès que le client se connecte et demande l'info des points
+         */
+        socket.on(messages.messageClientsNeedPointsInformations, function () {
+            io.emit(messages.messageToClientReceivePoints, teamMayo.points, teamKetchup.points);
+        });        
+        /**
+         *  Manage les points de la team mayo
          */
         socket.on(messages.messageMayoTeam, function (message) {
             receiveOrderModifyPoints(message, messages.messageToClientMayo, teamMayo);
         });
         /**
-         *  Manage la team ketchup
+         *  Manage les points de la team ketchup
          */
         socket.on(messages.messageKetchupTeam, function (message) {
             receiveOrderModifyPoints(message, messages.messageToClientKetchup, teamKetchup);
         });
-
+        /**
+         * Se charge de bloquer les buzzers 
+         */
+        socket.on(messages.messageLockBuzz, function () {
+            io.emit(messages.messageToClientLockBuzz)
+        });
+        /**
+         * Se charge de débloquer les buzzers 
+         */
+        socket.on(messages.messageUnLockBuzz, function () {
+            io.emit(messages.messageToClientUnLockBuzz)
+        });
         /**
          * Recharge la partie
          */

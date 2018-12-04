@@ -1,9 +1,9 @@
 module.exports = Object.freeze({
     /**
      * Messages de base de socket.io
-     */    
+     */
     messageConnection: 'connection',
-    messageDisconnected: 'disconnect',      
+    messageDisconnected: 'disconnect',
     /**
      * Message de la télécommand admin
      * Pour intérargir avec le jeu
@@ -12,10 +12,12 @@ module.exports = Object.freeze({
     messageReloadPart: 'event-reload-part',
     messageMayoTeam: 'event-point-mayo',
     messageKetchupTeam: 'event-point-ketchup',
+    messageLockBuzz: 'event-lock-buzz',
+    messageUnLockBuzz: 'event-unlock-buzz',
     /**
      * Les messages que les clients envoies
      */
-    messageClientSendBuzz:'on-buzz',
+    messageClientSendBuzz: 'on-buzz',
     messageClientsNeedPointsInformations: 'need-information-points',
     /**
      * Les messages à envoyer aux clients
@@ -25,4 +27,6 @@ module.exports = Object.freeze({
     messageToClientKetchup: 'point-ketchup',
     messageToClientReceivePoints: 'receive-points-teams',
     messageToClientReceiveBuzz: 'receive-buzz',
+    messageToClientLockBuzz: 'receive-lock-buzz',
+    messageToClientUnLockBuzz: 'receive-unlock-buzz',
 });

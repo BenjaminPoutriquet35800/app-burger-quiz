@@ -7,15 +7,25 @@
 </head>
 
 <body>
-    <div class="container h-100">
-        <div class="row align-items-center h-100">
+    <div class="container-fluid h-100">
+        <div class="row justify-content-end h-25">            
+            <!-- Affichage du logo de l'équipe -->
+            <%if (team === 'team-mayo') {%>
+            <input type="image" src="./images/teams/mayo.svg" class="img-fluid" width="10%" />
+            <% } 
+                else if (team === 'team-ketchup') { %>
+            <img src="./images/teams/ketchup.svg" class="img-fluid" width="10%" />
+            <% } %>
+        </div>
+        <div class="row justify-content-around h-75" id="buzzer-container">
             <div class="mx-auto">
-                <input type="hidden" value="<%= team %>" id="team-hf-val"/>
-                <button id="buzz-button">buzz</button>
+                <input type="hidden" value="<%= team %>" id="team-hf-val" />
+                <input id="buzz-button" type="image" src="./images/buzzer/burger-buzzer.png"/>
             </div>
         </div>
     </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="./js/client-buzzer.js"></script>
+
 </html>

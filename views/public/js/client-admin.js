@@ -6,13 +6,17 @@ const messageRemove = 'remove';
 const messageMayoTeam = 'event-point-mayo';
 const messageKetchupTeam = 'event-point-ketchup';
 const messageReloadPart = 'event-reload-part';
+const messageLockBuzz= 'event-lock-buzz';
+const messageUnLockBuzz= 'event-unlock-buzz';
 
-$buttonAddPointMayo = $("#button-add-point-mayo");
-$buttonRemovePointMayo = $("#button-remove-point-mayo");
-$buttonAddPointKetchup = $("#button-add-point-ketchup");
-$buttonRemovePointKetchup = $("#button-remove-point-ketchup");
+$buttonAddPointMayo = $('#button-add-point-mayo');
+$buttonRemovePointMayo = $('#button-remove-point-mayo');
+$buttonAddPointKetchup = $('#button-add-point-ketchup');
+$buttonRemovePointKetchup = $('#button-remove-point-ketchup');
 
-$buttonReloadPart = $("#button-reload-part");
+$buttonLockBuzzer = $('#button-lock-buzz');
+$buttonUnLockBuzzer = $('#button-unlock-buzz');
+$buttonReloadPart = $('#button-reload-part');
 
 var initEvents = function () {
     $buttonAddPointMayo.click(function () {
@@ -28,8 +32,13 @@ var initEvents = function () {
         socket.emit(messageKetchupTeam, messageRemove);
     });
     $buttonReloadPart.click(function () {
-        console.log('je reload');
         socket.emit(messageReloadPart);
+    })
+    $buttonLockBuzzer.click(function () {
+        socket.emit(messageLockBuzz);
+    })
+    $buttonUnLockBuzzer.click(function () {
+        socket.emit(messageUnLockBuzz);
     })
 }
 

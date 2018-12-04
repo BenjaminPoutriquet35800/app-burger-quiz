@@ -214,11 +214,3 @@ const initSocketAndListenEvents = function () {
 registerComponents();
 
 initSocketAndListenEvents();
-
-// $modalBuzz.css({
-//     "opacity": "0",
-//     "display": "block",
-//     "background": "red"
-// }).show().animate({
-//     opacity: 1
-// })
