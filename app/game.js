@@ -22,10 +22,10 @@ module.exports = function (io) {
          */
         socket.on(messages.messageClientsNeedPointsInformations, function () {
             io.emit(messages.messageToClientReceivePoints, teamMayo.points, teamKetchup.points);
-        });    
+        });
         socket.on(messages.messageClientNeedStateBuzzer, function () {
             io.emit(messages.messageToClientReceiveStateBuzzer, buzzerIsLock);
-        });     
+        });
         /**
          *  Manage les points de la team mayo
          */
@@ -60,11 +60,13 @@ module.exports = function (io) {
             teamMayo.points = 0;
             teamKetchup.points = 0;
             io.emit(messages.messageToClientReloadPart);
-        })
+        });
         /**
          * Se produit lorsqu'un client buzz
          */
         socket.on(messages.messageClientSendBuzz, function (teamName) {
+            if (buzzerIsLock)
+                return;
             io.emit(messages.messageToClientReceiveBuzz, teamName);
         });
 
