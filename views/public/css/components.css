@@ -470,7 +470,7 @@
     margin-left: -15px;
 }
 
-.empty-straw-img {
+.straw-img {
     background: url('../images/burger/straw.png') no-repeat;
     background-size:contain;
     width: 200px;
