@@ -273,7 +273,207 @@
     height: 100%;
 }
 
-.empty-tester {
-    background-image: url('../images/burger/empty-top-bread.png');
-    background-size: 300px 100px;
+/*** Avec Images ***/
+
+.empty-bread-img {
+    background: url('../images/burger/empty-base-burger.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 60px;
+    margin-top: -5px;
+}
+
+.bread-img {
+    background: url('../images/burger/base-burger.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 60px;
+    margin-top: -5px;
+}
+
+.empty-salad-img {
+    background: url('../images/burger/empty-salad.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 15px;
+}
+
+.salad-img {
+    background: url('../images/burger/salad.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 15px;
+}
+
+.empty-base-meat-img {
+    background: url('../images/burger/empty-base-meat.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 45px;
+    margin-left: 25px;
+}
+
+.base-meat-img {
+    background: url('../images/burger/base-meat.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 45px;
+    margin-left: 15px;
+}
+
+.empty-base-tomato-img {
+    background: url('../images/burger/empty-base-tomato.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 45px;
+    margin-left: 10px;
+}
+
+.base-tomato-img {
+    background: url('../images/burger/base-tomato.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 45px;
+    margin-left: 10px;
+}
+
+.empty-bread-middle-img  {
+    background: url('../images/burger/empty-middle-burger.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 35px;
+    margin-left: 30px;
+    margin-bottom: -5px;
+}
+
+.bread-middle-img  {
+    background: url('../images/burger/middle-burger.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 40px;
+    margin-left: 15px;
+    margin-bottom: -15px;
+}
+
+.empty-cheese-img {
+    background: url('../images/burger/empty-cheese.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 40px;
+    margin-left: 20px;
+    margin-bottom: -10px;
+}
+
+.cheese-img {
+    background: url('../images/burger/cheese.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 40px;
+    margin-left: 20px;
+    margin-bottom: -10px;
+}
+
+.empty-top-meat-img {
+    background: url('../images/burger/empty-top-meat.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 30px;
+}
+
+.top-meat-img {
+    background: url('../images/burger/top-meat.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+
+.empty-top-tomato-img {
+    background: url('../images/burger/empty-top-tomato.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.top-tomato-img {
+    background: url('../images/burger/top-tomato.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 40px;
+    margin-left: 20px;
+}
+
+.empty-top-bread-img {
+    background: url('../images/burger/empty-top-bread.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 80px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+
+.top-bread-img {
+    background: url('../images/burger/top-bread.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 80px;
+    margin-left: 30px;
+    margin-bottom: -10px;
+}
+
+.empty-cup-img {
+    background: url('../images/burger/empty-cup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 280px;
+    margin-top:25px;
+    margin-left: -30px;
+}
+
+.cup-img {
+    background: url('../images/burger/cup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 280px;
+    margin-top:25px;
+    margin-left: -30px;
+}
+
+.empty-top-cup-img {
+    background: url('../images/burger/empty-top-cup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px;
+    margin-bottom:-60px;
+    margin-left: -30px;
+}
+
+.top-cup-img {
+    background: url('../images/burger/top-cup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px;
+    margin-bottom:-60px;
+    margin-left: -30px;
+}
+
+.empty-straw-img {
+    background: url('../images/burger/empty-straw.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: -15px;
+}
+
+.empty-straw-img {
+    background: url('../images/burger/straw.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: -15px;
 }
