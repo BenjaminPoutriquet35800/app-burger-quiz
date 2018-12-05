@@ -272,3 +272,8 @@
     background: red;
     height: 100%;
 }
+
+.empty-tester {
+    background-image: url('../images/burger/empty-top-bread.png');
+    background-size: 300px 100px;
+}

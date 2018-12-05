@@ -15,3 +15,7 @@ body {
     filter: alpha(opacity=40); /* msie */
     background-color: #000;
 }
+
+#game-background {
+    padding: 0.5%;
+}

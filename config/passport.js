@@ -30,7 +30,7 @@ module.exports = function (passport) {
             passReqToCallback: true
         },
         function (req, username, password, done) {
-            if (username.toLowerCase() === 'toto') {
+            if (username.toLowerCase() === 'admin' && password === 'burger2018') {
                 let user = new User();
                 user.username = username;
                 user.password = password;
