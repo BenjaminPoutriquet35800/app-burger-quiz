@@ -477,3 +477,63 @@
     height: 100px; 
     margin-left: -15px;
 }
+
+.straw-img {
+    background: url('../images/burger/straw.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: -15px;
+}
+
+.empty-salt-pepper-img {
+    background: url('../images/burger/empty-salt-pepper.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 60px; 
+    margin-top: 15px;
+}
+
+.salt-pepper-img {
+    background: url('../images/burger/salt-pepper.png') no-repeat;
+    background-size:contain;
+    width: 180px;
+    height: 60px;     
+    margin-top: 15px;
+}
+
+.empty-mayo-img {
+    background: url('../images/burger/empty-mayo-ketchup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: 15px;    
+    margin-top: 25px; 
+}
+
+.empty-ketchup-img {
+    background: url('../images/burger/empty-mayo-ketchup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: 15px;
+    margin-top: 25px;     
+}
+
+.mayo-img {
+    background: url('../images/burger/tube-mayo.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: 15px;    
+    margin-top: 25px; 
+}
+
+.ketchup-img {
+    background: url('../images/burger/tube-ketchup.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 100px; 
+    margin-left: 15px;
+    margin-top: 25px;
+}
