@@ -14,6 +14,7 @@ module.exports = Object.freeze({
     messageKetchupTeam: 'event-point-ketchup',
     messageLockBuzz: 'event-lock-buzz',
     messageUnLockBuzz: 'event-unlock-buzz',
+    messageNextTransition: 'event-next-transition',
     /**
      * Les messages que les clients envoies
      */
@@ -31,4 +32,5 @@ module.exports = Object.freeze({
     messageToClientLockBuzz: 'receive-lock-buzz',
     messageToClientUnLockBuzz: 'receive-unlock-buzz',
     messageToClientReceiveStateBuzzer:'receive-state-buzzer',
+    messageToClientNextTransition: 'receive-next-transition',
 });

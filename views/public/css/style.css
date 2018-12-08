@@ -7,15 +7,20 @@ body {
 
 #modal-buzz {
     height: 100%;
-    display: none;    
+    display: none;
 }
 
 .lock-buzz-button {
     opacity: 0.4;
-    filter: alpha(opacity=40); /* msie */
+    filter: alpha(opacity=40);
+    /* msie */
     background-color: #000;
 }
 
 #game-background {
     padding: 0.5%;
+}
+
+#modal-transition {
+    display: block;
 }

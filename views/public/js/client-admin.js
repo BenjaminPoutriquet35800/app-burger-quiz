@@ -8,6 +8,7 @@ const messageKetchupTeam = 'event-point-ketchup';
 const messageReloadPart = 'event-reload-part';
 const messageLockBuzz= 'event-lock-buzz';
 const messageUnLockBuzz= 'event-unlock-buzz';
+const messageNextTransition= 'event-next-transition';
 
 $buttonAddPointMayo = $('#button-add-point-mayo');
 $buttonRemovePointMayo = $('#button-remove-point-mayo');
@@ -17,6 +18,8 @@ $buttonRemovePointKetchup = $('#button-remove-point-ketchup');
 $buttonLockBuzzer = $('#button-lock-buzz');
 $buttonUnLockBuzzer = $('#button-unlock-buzz');
 $buttonReloadPart = $('#button-reload-part');
+
+$buttonNextTransition = $('#button-next-transition');
 
 var initEvents = function () {
     $buttonAddPointMayo.click(function () {
@@ -39,6 +42,9 @@ var initEvents = function () {
     })
     $buttonUnLockBuzzer.click(function () {
         socket.emit(messageUnLockBuzz);
+    })
+    $buttonNextTransition.click(function(){
+        socket.emit(messageNextTransition);
     })
 }
 

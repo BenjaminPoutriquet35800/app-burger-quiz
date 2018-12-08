@@ -6,6 +6,10 @@ $pointMayoUnit = $('#point-mayo-unit');
 $modalBuzz = $('#modal-buzz');
 $mainBackground = $('#game-background');
 
+$modalTransition = $('#modal-transiton');
+$sourceTransition = $('#source-transition');
+$videoTransitionContainer = $('#video-transition-container');
+
 var socket = null;
 
 const mayo = 'team-mayo'
@@ -13,6 +17,9 @@ const ketchup = 'team-ketchup';
 const componentsMayo = [];
 const componentsKetchup = [];
 
+/**
+ * Couleur
+ */
 const mayoColor = '#E0C800';
 const ketchupColor = '#C71000';
 
@@ -22,6 +29,11 @@ const ketchupColor = '#C71000';
 const baseEmpty = 'empty-';
 
 /**
+ * Base répertoire
+ */
+const baseDirVideos = './videos/';
+
+/**
  * Les messages que reçoit le client
  */
 const messageClientMayo = 'point-mayo';
@@ -29,6 +41,7 @@ const messageClientKetchup = 'point-ketchup';
 const messageToClientReloadPart = 'reload-part';
 const messageToClientReceivePoints = 'receive-points-teams';
 const messageToClientReceiveBuzz = 'receive-buzz';
+const messageToClientNextTransition= 'receive-next-transition';
 
 /**
  * Les messages qu'envoie le client
@@ -149,8 +162,7 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     let color = null;
     if (teamName === ketchup) {
         color = ketchupColor;
-    }
-    else if (teamName === mayo) {
+    } else if (teamName === mayo) {
         color = mayoColor;
     } else {
         console.log('Impossible de faire le buzz car valeur indéterminée : ' + teamName)
@@ -160,11 +172,23 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     $mainBackground.hide();
     $modalBuzz.show();
     $modalBuzz.fadeIn(0, function () {
-        $(this).css('background', color).fadeOut(500, function () {            
+        $(this).css('background', color).fadeOut(500, function () {
             $modalBuzz.hide();
             $mainBackground.show();
         });
     });
+}
+
+/**
+ * Se charge d'afficher une transition à l'écran
+ * @param {*} transitionName Le nom de la ressource à afficher
+ */
+const receiveOrderForTransition = function (transitionName) {
+    $mainBackground.hide();
+    $modalTransition.show();
+    $sourceTransition.attr('src', baseDirVideos + transitionName);
+    $videoTransitionContainer.load();
+    $videoTransitionContainer.get(0).play();
 }
 
 /**
@@ -176,6 +200,7 @@ const initSocketAndListenEvents = function () {
      * Points pour l'équipe mayo
      */
     socket.on(messageClientMayo, function (points) {
+        receiveOrderForTransition('');
         attributePointsAtTeam(mayo, points);
     });
     /**
@@ -204,6 +229,12 @@ const initSocketAndListenEvents = function () {
     socket.on(messageToClientReceiveBuzz, function (teamName) {
         receiveBuzzAndInteractOnView(teamName);
     });
+    /**
+     * Affiche la prochaine transition
+     */
+    socket.on(messageToClientNextTransition,function(transitionName){
+        receiveOrderForTransition(transitionName);
+    })
     /**
      * On souhaite connaitre le nombre de points
      * Dès que l'on se connecte sur la page

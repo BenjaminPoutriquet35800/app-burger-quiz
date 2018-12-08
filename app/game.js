@@ -1,6 +1,9 @@
 module.exports = function (io) {
     const Team = require('../app/models/Team');
+    const Transition = require('../app/models/Transition');
     const messages = require('../config/messages-socket');
+
+    let transitionsList = [];
 
     const teamMayo = new Team('mayo');
     const teamKetchup = new Team('ketchup');
@@ -70,6 +73,15 @@ module.exports = function (io) {
             io.emit(messages.messageToClientReceiveBuzz, teamName);
         });
 
+        socket.on(messages.messageNextTransition, function () {
+
+            var nextTransition = null;
+
+                if (!nextTransition)
+                    return;
+            io.emit(messages.messageToClientNextTransition, nextTransition.filename);
+        });
+
         /**
          * Se charge d'ajouter ou de retirer des points
          * Pour une équipe
@@ -83,4 +95,14 @@ module.exports = function (io) {
             io.emit(messageForClient, team.points);
         }
     });
+
+    /**
+     * Se charge d'initialiser les transitions
+     */
+    const initTransitionList = function () {
+        transitionsList.push(new Transition('nuggets-transition.mp4', 1));
+        transitionsList.push(new Transition('selt-pepper-transition.mp4', 2));
+        transitionsList.push(new Transition('menus-transition.mp4', 3));
+        transitionsList.push(new Transition('death-burger-transition.mp4', 4));
+    }
 }

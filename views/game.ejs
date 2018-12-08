@@ -9,7 +9,7 @@
 <body>
     <div id="game-background">
         <!-- Ecran Ketchup -->
-        <div class="row h-50 test-container mt-2" id="team-ketchup">
+        <div class="row h-50 mt-2" id="team-ketchup">
             <div class="col">
                 <div class="container d-flex h-100">
                     <div class="row h-100 row justify-content-center align-self-center">
@@ -97,7 +97,7 @@
                 <div data-points="14" id="salt-pepper-m" class="empty-salt-pepper-img"></div>
             </div>
             <div class="col">
-                    <div class="row ml-2">
+                <div class="row ml-2">
                     <div data-points="22" id="frie-3-m" class="empty-frie-1-img"></div>
                     <div data-points="23" id="frie-4-m" class="empty-frie-2-img"></div>
                     <div data-points="24" id="frie-5-m" class="empty-frie-3-img"></div>
@@ -125,6 +125,18 @@
     </div>
     <!-- Modal Buzz -->
     <div id="modal-buzz"></div>
+    <!-- Modal Transition -->
+    <div id="modal-transition" class="container-fluid h-100">
+        <div class="row align-items-center h-100">
+            <div class="mx-auto">
+                <video id="video-transition-container">
+                    <source id="source-transition" src="./videos/menus-transition.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="./js/client-game.js"></script>
 
