@@ -24,9 +24,11 @@ const mayoColor = '#E0C800';
 const ketchupColor = '#C71000';
 
 /**
- * Son
+ * Sons
  */
-const buzzSound = 'sounds/buzz.mp3';
+const buzzSound = './sounds/buzz.mp3';
+const buzzSoundAie = './sounds/burger-sound-buzz-1.mp3';
+const buzzSoundOutch = './sounds/burger-sound-buzz-2.mp3';
 
 /**
  * Prop css convention
@@ -166,10 +168,13 @@ const populateCollectionComponents = function (collection, containerId) {
  */
 const receiveBuzzAndInteractOnView = function (teamName) {
     let color = null;
+    let sound = null
     if (teamName === ketchup) {
         color = ketchupColor;
+        sound = buzzSoundAie;
     } else if (teamName === mayo) {
         color = mayoColor;
+        sound = buzzSoundOutch;
     } else {
         console.log('Impossible de faire le buzz car valeur indéterminée : ' + teamName)
     }
@@ -179,6 +184,7 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     $modalBuzz.show();
     $modalBuzz.fadeIn(0, function () {
         $(this).css('background', color).fadeOut(500, function () {
+            playSound(sound);
             $modalBuzz.hide();
             $mainBackground.show();
         });
@@ -206,7 +212,15 @@ const receiveOrderForTransition = function (transitionName) {
  * Lorsqu'une équipe à mal répondu
  */
 const launchBuzzSound = function () {
-    var audio = new Audio(buzzSound);
+    playSound(buzzSound);
+}
+
+/**
+ * Joue un son
+ * @param {*} sound le lien du son à jouer
+ */
+const playSound = function(sound) {
+    var audio = new Audio(sound);
     audio.play();
 }
 

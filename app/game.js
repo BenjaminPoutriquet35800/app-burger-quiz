@@ -65,6 +65,7 @@ module.exports = function (io) {
                 teamKetchup.points = 0;
                 initTransitionList();
                 io.emit(messages.messageToClientReloadPart);
+                io.emit(messages.messageToClientReceiveStateBuzzer, buzzerIsLock);
             });
             /**
              * Se produit lorsqu'un client buzz
