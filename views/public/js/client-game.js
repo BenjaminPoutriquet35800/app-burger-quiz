@@ -41,7 +41,7 @@ const messageClientKetchup = 'point-ketchup';
 const messageToClientReloadPart = 'reload-part';
 const messageToClientReceivePoints = 'receive-points-teams';
 const messageToClientReceiveBuzz = 'receive-buzz';
-const messageToClientNextTransition= 'receive-next-transition';
+const messageToClientNextTransition = 'receive-next-transition';
 
 /**
  * Les messages qu'envoie le client
@@ -189,6 +189,10 @@ const receiveOrderForTransition = function (transitionName) {
     $sourceTransition.attr('src', baseDirVideos + transitionName);
     $videoTransitionContainer.load();
     $videoTransitionContainer.get(0).play();
+    $videoTransitionContainer.on('ended', function () {
+        $mainBackground.show();
+        $modalTransition.hide();
+    });
 }
 
 /**
@@ -200,7 +204,6 @@ const initSocketAndListenEvents = function () {
      * Points pour l'équipe mayo
      */
     socket.on(messageClientMayo, function (points) {
-        receiveOrderForTransition('');
         attributePointsAtTeam(mayo, points);
     });
     /**
@@ -232,7 +235,7 @@ const initSocketAndListenEvents = function () {
     /**
      * Affiche la prochaine transition
      */
-    socket.on(messageToClientNextTransition,function(transitionName){
+    socket.on(messageToClientNextTransition, function (transitionName) {
         receiveOrderForTransition(transitionName);
     })
     /**

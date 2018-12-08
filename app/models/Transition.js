@@ -7,3 +7,5 @@ function Transition(filename, order) {
     this.filename = filename;
     this.order = order;
 }
+
+module.exports = Transition;
