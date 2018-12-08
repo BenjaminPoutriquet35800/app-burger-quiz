@@ -21,11 +21,14 @@
         <h1>Télécommand Admin</h1>
       </div>
       <div class="row mt-4">
-        <div class="col-lg-6 col-sm-6 text-center">
+        <div class="col-lg-4 col-sm-6 text-center">
           <input id="button-add-point-ketchup" type="button" class="base-button button-ketchup" value="+" />
           <input id="button-remove-point-ketchup" type="button" class="base-button button-ketchup" value="-" />
         </div>
-        <div class="col-lg-6 col-sm-6 text-center">
+        <div class="col-lg-4 col-sm-4 text-center">
+          <input id="button-buzz-bad-response" type="button" class="base-button button-ketchup" value="X" />
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center">
           <input id="button-add-point-mayo" type="button" class="base-button button-mayo" value="+" />
           <input id="button-remove-point-mayo" type="button" class="base-button button-mayo" value="-" />
         </div>
@@ -38,8 +41,7 @@
         <input class="btn btn-secondary btn-lg" type="button" value="Bloquer buzzer" id="button-lock-buzz" />
       </div>
       <div class="row justify-content-center mt-4">
-        <input class="btn btn-success btn-lg" type="button" value="Recharger partie" 
-               data-toggle="modal" data-target="#modal-reload-part"/>
+        <input class="btn btn-success btn-lg" type="button" value="Recharger partie" data-toggle="modal" data-target="#modal-reload-part" />
       </div>
     </div>
   </div>
@@ -56,7 +58,7 @@
         <div class="modal-body">
           <p>Es-tu sur de vouloir recharger la partie ?</p>
         </div>
-        <div class="modal-footer">         
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
           <button type="button" class="btn btn-primary" id="button-reload-part">Continuer</button>
         </div>

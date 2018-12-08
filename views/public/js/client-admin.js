@@ -9,11 +9,13 @@ const messageReloadPart = 'event-reload-part';
 const messageLockBuzz= 'event-lock-buzz';
 const messageUnLockBuzz= 'event-unlock-buzz';
 const messageNextTransition= 'event-next-transition';
+const messageBuzzBadResponse = 'event-bad-response';
 
 $buttonAddPointMayo = $('#button-add-point-mayo');
 $buttonRemovePointMayo = $('#button-remove-point-mayo');
 $buttonAddPointKetchup = $('#button-add-point-ketchup');
 $buttonRemovePointKetchup = $('#button-remove-point-ketchup');
+$buttonBuzzBadResponse = $('#button-buzz-bad-response');
 
 $buttonLockBuzzer = $('#button-lock-buzz');
 $buttonUnLockBuzzer = $('#button-unlock-buzz');
@@ -49,6 +51,9 @@ var initEvents = function () {
     $buttonNextTransition.click(function(){
         socket.emit(messageNextTransition);
     });
+    $buttonBuzzBadResponse.click(function() {
+        socket.emit(messageBuzzBadResponse);
+    })
 }
 
 initEvents();

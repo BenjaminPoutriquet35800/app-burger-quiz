@@ -86,6 +86,14 @@ module.exports = function (io) {
             });
 
             /**
+             * Se charge d'envoyer un message indiquant que l'équipe
+             * A mal répondu à la question
+             */
+            socket.on(messages.messageBuzzBadResponse, function() {
+                io.emit(messages.messageToClientReceiveBadResponse);
+            });
+
+            /**
              * Se charge d'ajouter ou de retirer des points
              * Pour une équipe
              */
@@ -107,8 +115,9 @@ module.exports = function (io) {
         transitionsList = [];
         transitionsList.push(new Transition('nuggets-transition.mp4', 1));
         transitionsList.push(new Transition('selt-pepper-transition.mp4', 2));
-        transitionsList.push(new Transition('menus-transition.mp4', 3));
-        transitionsList.push(new Transition('death-burger-transition.mp4', 4));
+        transitionsList.push(new Transition('menus-transition.mp4', 3)); 
+        transitionsList.push(new Transition('addition-transition.mp4', 4));
+        transitionsList.push(new Transition('death-burger-transition.mp4', 5));
         // Tri sur la propriété ordre de manière asc
         transitionsList.sort(function (a, b) {
             return a.order - b.order;

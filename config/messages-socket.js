@@ -15,6 +15,7 @@ module.exports = Object.freeze({
     messageLockBuzz: 'event-lock-buzz',
     messageUnLockBuzz: 'event-unlock-buzz',
     messageNextTransition: 'event-next-transition',
+    messageBuzzBadResponse :'event-bad-response',
     /**
      * Les messages que les clients envoies
      */
@@ -33,4 +34,5 @@ module.exports = Object.freeze({
     messageToClientUnLockBuzz: 'receive-unlock-buzz',
     messageToClientReceiveStateBuzzer:'receive-state-buzzer',
     messageToClientNextTransition: 'receive-next-transition',
+    messageToClientReceiveBadResponse: 'receive-buzz-bad-response',
 });

@@ -24,6 +24,11 @@ const mayoColor = '#E0C800';
 const ketchupColor = '#C71000';
 
 /**
+ * Son
+ */
+const buzzSound = 'sounds/buzz.mp3';
+
+/**
  * Prop css convention
  */
 const baseEmpty = 'empty-';
@@ -42,6 +47,7 @@ const messageToClientReloadPart = 'reload-part';
 const messageToClientReceivePoints = 'receive-points-teams';
 const messageToClientReceiveBuzz = 'receive-buzz';
 const messageToClientNextTransition = 'receive-next-transition';
+const messageToClientReceiveBadResponse = 'receive-buzz-bad-response';
 
 /**
  * Les messages qu'envoie le client
@@ -196,6 +202,15 @@ const receiveOrderForTransition = function (transitionName) {
 }
 
 /**
+ * Se charge d'envoyer un son
+ * Lorsqu'une équipe à mal répondu
+ */
+const launchBuzzSound = function () {
+    var audio = new Audio(buzzSound);
+    audio.play();
+}
+
+/**
  * Initialise la socket et ecoute les eventuelles messages
  */
 const initSocketAndListenEvents = function () {
@@ -237,7 +252,10 @@ const initSocketAndListenEvents = function () {
      */
     socket.on(messageToClientNextTransition, function (transitionName) {
         receiveOrderForTransition(transitionName);
-    })
+    });
+    socket.on(messageToClientReceiveBadResponse, function () {
+        launchBuzzSound();
+    });
     /**
      * On souhaite connaitre le nombre de points
      * Dès que l'on se connecte sur la page
