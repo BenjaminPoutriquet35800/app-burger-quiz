@@ -6,7 +6,7 @@ $pointMayoUnit = $('#point-mayo-unit');
 $modalBuzz = $('#modal-buzz');
 $mainBackground = $('#game-background');
 
-$modalTransition = $('#modal-transiton');
+$modalTransition = $('#modal-transition');
 $sourceTransition = $('#source-transition');
 $videoTransitionContainer = $('#video-transition-container');
 
