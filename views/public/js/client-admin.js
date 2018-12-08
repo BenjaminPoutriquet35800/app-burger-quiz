@@ -21,6 +21,8 @@ $buttonReloadPart = $('#button-reload-part');
 
 $buttonNextTransition = $('#button-next-transition');
 
+$modalReloadPartWarn = $('#modal-reload-part');
+
 var initEvents = function () {
     $buttonAddPointMayo.click(function () {
         socket.emit(messageMayoTeam, messageAdd);
@@ -36,16 +38,17 @@ var initEvents = function () {
     });
     $buttonReloadPart.click(function () {
         socket.emit(messageReloadPart);
-    })
+        $modalReloadPartWarn.modal('hide');
+    });
     $buttonLockBuzzer.click(function () {
         socket.emit(messageLockBuzz);
-    })
+    });
     $buttonUnLockBuzzer.click(function () {
         socket.emit(messageUnLockBuzz);
-    })
+    });
     $buttonNextTransition.click(function(){
         socket.emit(messageNextTransition);
-    })
+    });
 }
 
 initEvents();
