@@ -537,3 +537,73 @@
     margin-left: 15px;
     margin-top: 25px;
 }
+
+.empty-bucket-img {
+    background: url('../images/burger/empty-bucket.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 180px; 
+}
+
+.bucket-img {
+    background: url('../images/burger/bucket.png') no-repeat;
+    background-size:contain;
+    width: 200px;
+    height: 180px; 
+}
+
+.empty-frie-1-img {
+    background: url('../images/burger/empty-frie-1.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px;   
+}
+
+.frie-1-img {
+    background: url('../images/burger/frie-1.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.empty-frie-2-img {
+    background: url('../images/burger/empty-frie-2.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.frie-2-img {
+    background: url('../images/burger/frie-2.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.empty-frie-3-img {
+    background: url('../images/burger/empty-frie-3.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.frie-3-img {
+    background: url('../images/burger/frie-3.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.empty-frie-4-img {
+    background: url('../images/burger/empty-frie-4.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
+
+.frie-4-img {
+    background: url('../images/burger/frie-4.png') no-repeat;
+    background-size:contain;
+    width: 50px;
+    height: 80px; 
+}
