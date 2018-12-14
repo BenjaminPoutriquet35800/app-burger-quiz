@@ -181,10 +181,10 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     if (!color)
         return;
     $mainBackground.hide();
+    playSound(sound);
     $modalBuzz.show();
     $modalBuzz.fadeIn(0, function () {
         $(this).css('background', color).fadeOut(500, function () {
-            playSound(sound);
             $modalBuzz.hide();
             $mainBackground.show();
         });
