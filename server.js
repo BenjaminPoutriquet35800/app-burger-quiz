@@ -8,6 +8,8 @@ const flash = require('connect-flash')
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+//Variable globale stockant le chemin de base de l'app (compatibilité linux pour les paths)
+global.__basedir = __dirname;
 
 app.use(express.static(__dirname + '/views/public/'));
 app.set('views', path.join(__dirname, 'views/'));

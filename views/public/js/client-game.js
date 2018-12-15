@@ -168,7 +168,7 @@ const populateCollectionComponents = function (collection, containerId) {
  */
 const receiveBuzzAndInteractOnView = function (teamName) {
     let color = null;
-    let sound = null
+    let sound = null;
     if (teamName === ketchup) {
         color = ketchupColor;
         sound = buzzSoundAie;

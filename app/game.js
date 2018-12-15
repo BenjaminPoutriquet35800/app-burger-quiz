@@ -1,9 +1,11 @@
+var path = require('path');
+
 module.exports = function (io) {
-    const Team = require('../app/models/Team');
-    const Transition = require('../app/models/Transition');
-    const messages = require('../config/messages-socket');
-    
-    let transitionsList = [];
+    const Team = require(path.join(global.__basedir,'app/models/Team'));
+    const Transition = require(path.join(global.__basedir,'app/models/Transition'));
+    const messages = require(path.join(global.__basedir,'config/messages-socket'));
+
+    var transitionsList = [];
 
     const teamMayo = new Team('mayo');
     const teamKetchup = new Team('ketchup');
