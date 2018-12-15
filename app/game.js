@@ -1,8 +1,8 @@
 var path = require('path');
 
 module.exports = function (io) {
-    const Team = require(path.join(global.__basedir,'app/models/Team'));
-    const Transition = require(path.join(global.__basedir,'app/models/Transition'));
+    const Team = require(path.join(global.__basedir,'app/models/team'));
+    const Transition = require(path.join(global.__basedir,'app/models/transition'));
     const messages = require(path.join(global.__basedir,'config/messages-socket'));
 
     var transitionsList = [];
