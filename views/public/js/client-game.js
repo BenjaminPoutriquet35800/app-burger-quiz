@@ -58,7 +58,7 @@ const messageClientsNeedPointsInformations = 'need-information-points';
 
 /**
  * Se charge d'attribuer des points à une equipe
- * @param {*} team L'equipe à qui on va attribuer le point
+ * @param {*} team L'equipe à qui on va attribuer les points
  * @param {*} points Les points que l'on va attribuer
  */
 var attributePointsAtTeam = function (team, points) {

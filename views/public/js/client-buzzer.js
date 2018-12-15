@@ -21,7 +21,6 @@ const messageClientNeedStateBuzzer = 'need-state-buzzer';
  */
 const lockBuzzerStyle = 'lock-buzz-button';
 
-
 /**
  * Initialise les events
  */
@@ -43,7 +42,6 @@ const initEvents = function () {
 const initSocketAndListenEvents = function () {
     socket = io();
     socket.on(messageToClientReceiveStateBuzzer, function (buzzerIsLocked) {
-console.log(buzzerIsLocked);
         if (buzzerIsLocked) {
             $buzzButton.addClass(lockBuzzerStyle);
         } else {
