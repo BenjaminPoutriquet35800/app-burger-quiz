@@ -26,6 +26,30 @@ body {
     display: none;
 }
 
+#modal-buzz-first-ketchup {
+    position:absolute;
+    z-index:99;
+    top:25px;
+    left: 25px;
+    display: none;
+}
+
+#modal-buzz-first-mayo{
+    position:absolute;
+    z-index:99;
+    top:60%;
+    left: 25px;
+    display: none ;
+}
+
+#modal-buzz-first-mayo > input[type="image"] {
+    height: 150px;
+}
+
+#modal-buzz-first-ketchup > input[type="image"] {
+    height: 150px;
+}
+
 .point-ketchup {
     background: #C71000;
     width: 140px;

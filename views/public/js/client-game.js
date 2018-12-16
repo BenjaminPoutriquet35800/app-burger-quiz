@@ -10,7 +10,15 @@ $modalTransition = $('#modal-transition');
 $sourceTransition = $('#source-transition');
 $videoTransitionContainer = $('#video-transition-container');
 
+$modalTeamMayo = $('#modal-buzz-first-mayo');
+$modalTeamKetchup = $('#modal-buzz-first-ketchup');
+
 var socket = null;
+/**
+ * Variable permettant de savoir quel équipe
+ * Aura buzz en première
+ */
+var teamFirstBuzz = null;
 
 const mayo = 'team-mayo'
 const ketchup = 'team-ketchup';
@@ -39,6 +47,11 @@ const baseEmpty = 'empty-';
  * Base répertoire
  */
 const baseDirVideos = './videos/';
+
+/**
+ * Les Durées
+ */
+const durationHiddenModalBuzzFirst = 4000;
 
 /**
  * Les messages que reçoit le client
@@ -181,14 +194,36 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     if (!color)
         return;
     $mainBackground.hide();
-    playSound(sound);
+    playSound(sound);    
     $modalBuzz.show();
     $modalBuzz.fadeIn(0, function () {
         $(this).css('background', color).fadeOut(500, function () {
             $modalBuzz.hide();
             $mainBackground.show();
+            pinupTeamBuzzFirstOnView(teamName);
         });
     });
+}
+
+/**
+ * Affiche une modal pour l'équipe qui aura
+ * Buzz en première
+ * @param {*} teamName Le nom de l'équipe pour qui on
+ *  On souhaite afficher la modal
+ */
+const pinupTeamBuzzFirstOnView = function (teamName) {
+    if (teamFirstBuzz)
+        return;
+    teamFirstBuzz = teamName;
+    // Récupére la modal à afficher par rapport à l'équipe
+    let modal = teamName === mayo ? $modalTeamMayo : $modalTeamKetchup;
+    modal.show();
+    // On fait disparaitre la modal au bout
+    // D'une certaine durée
+    setTimeout(function () {
+        modal.hide();
+        teamFirstBuzz = null;
+    }, durationHiddenModalBuzzFirst);
 }
 
 /**
@@ -219,7 +254,7 @@ const launchBuzzSound = function () {
  * Joue un son
  * @param {*} sound le lien du son à jouer
  */
-const playSound = function(sound) {
+const playSound = function (sound) {
     var audio = new Audio(sound);
     audio.play();
 }
