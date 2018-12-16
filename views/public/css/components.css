@@ -273,6 +273,7 @@
     width: 180px;
     height: 35px;
     margin-left: 30px;
+    margin-top: -5px;
     margin-bottom: -5px;
 }
 
@@ -291,7 +292,8 @@
     width: 180px;
     height: 40px;
     margin-left: 20px;
-    margin-bottom: -10px;
+    margin-top: -5px;
+    margin-bottom: -15px;
 }
 
 .cheese-img {
@@ -300,7 +302,8 @@
     width: 180px;
     height: 40px;
     margin-left: 20px;
-    margin-bottom: -10px;
+    margin-top: -5px;
+    margin-bottom: -15px;
 }
 
 .empty-top-meat-img {
