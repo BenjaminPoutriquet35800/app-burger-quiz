@@ -3,7 +3,7 @@ body {
     height: 100%;
     overflow: hidden;
     background: black !important;
-    overflow-y: auto;
+    overflow-y: auto;	
 }
 
 #modal-buzz {
