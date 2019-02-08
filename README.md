@@ -1,6 +1,8 @@
 # app-burger-quiz
 
-![Alt text](views/public/images/backgrounds/menus.svg?raw=true "Title")
+<p align="center">
+<img src="https://raw.githubusercontent.com/BenjaminPoutriquet35800/app-burger-quiz/master/views/public/images/backgrounds/menus.svg?sanitize=true" height="250"> 
+</p>
 
 Burger quiz de Dujardin est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
 
