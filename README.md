@@ -9,7 +9,7 @@ Burger quiz est le jeu qui reprend les codes de la célèbre émission présent�
 ### Prérequis
 Installer NodeJs : https://nodejs.org/fr/
 
-### Installing
+### Installation
 
 Se rendre à la base du répertoire où se trouve le fichier 'package.json' puis lancer la commande :
 
