@@ -32,3 +32,5 @@ node server.js
 Par défaut le serveur écoute sur le port 3000. 
 
 Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ 
+
+Sur cette page vous avez accès aux choix des équipes (Ketchup / Mayo)
