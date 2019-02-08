@@ -35,10 +35,10 @@ Par défaut le serveur écoute sur le port **3000**.
 
 Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ qui permet de choisir une équipe (Ketchup / Mayo).
 
-Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game.
+Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game :
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/25900708/52507593-461e9480-2bf2-11e9-9882-60ca26b7a568.png" height="250"> 
+<img src="https://user-images.githubusercontent.com/25900708/52507593-461e9480-2bf2-11e9-9882-60ca26b7a568.png" height="300"> 
 </p>
 
 Cette page est l'écran principal de l'application. 
