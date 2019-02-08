@@ -58,5 +58,11 @@ Cette page va permettre d'administrer le jeu. Vous allez pouvoir ajouter les poi
 
 **NOTA**: Si vous êtes sous **Google Chrome** cliquer une première fois sur la fenêtre du jeu car vous aurez une erreur de type **'Uncaught (in promise) DOMException'** et l'animation ne se lancera pas.
 
+## Auteurs
+
+* **Poutriquet Benjamin** - *Initial work* - [app-burger-quiz](https://github.com/BenjaminPoutriquet35800/app-burger-quiz)
+* Voir aussi la liste des [contributeurs](https://github.com/your/project/contributors) ayant participé à ce projet.
+
+
 
 
