@@ -61,7 +61,7 @@ Cette page va permettre d'administrer le jeu. Vous allez pouvoir ajouter les poi
 ## Auteurs
 
 * **Poutriquet Benjamin** - *Initial work* - [app-burger-quiz](https://github.com/BenjaminPoutriquet35800/app-burger-quiz)
-* Voir aussi la liste des [contributeurs](https://github.com/your/project/contributors) ayant participé à ce projet.
+* Voir aussi la liste des [contributeurs](https://github.com/BenjaminPoutriquet35800/app-burger-quiz/graphs/contributors) ayant participé à ce projet.
 
 
 
