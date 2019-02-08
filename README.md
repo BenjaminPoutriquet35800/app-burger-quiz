@@ -6,10 +6,10 @@
 
 Burger quiz est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
 
-### Prérequis
+## Prérequis
 Installer NodeJs : https://nodejs.org/fr/
 
-### Installation
+## Installation
 
 Cloner le répo :
 
@@ -29,7 +29,7 @@ Une fois que les dépendances ont été installées vous pouvez lancer l'applica
 node server.js
 ```
 
-### Démonstration
+## Démonstration
 
 Par défaut le serveur écoute sur le port **3000**. 
 
