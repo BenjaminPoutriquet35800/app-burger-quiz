@@ -33,7 +33,11 @@ node server.js
 
 Par défaut le serveur écoute sur le port **3000**. 
 
-Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ qui permet de choisir une équipe (Ketchup / Mayo).
+Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ qui permet de choisir une équipe (Ketchup / Mayo) :
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25900708/52507764-ce9d3500-2bf2-11e9-91ba-4518018d0a5f.png" height="300"> 
+</p>
 
 Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game :
 
