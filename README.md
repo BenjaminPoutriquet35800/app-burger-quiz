@@ -29,6 +29,12 @@ Une fois que les dépendances ont été installées vous pouvez lancer l'applica
 node server.js
 ```
 
-Par défaut le serveur écoute sur le port 3000. Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ 
+### Démonstration
 
-Sur cette page vous avez accès aux choix des équipes (Ketchup / Mayo)
+Par défaut le serveur écoute sur le port 3000. 
+
+Vous pouvez à présent accèder à l'application via cette adressse : http://localhost:3000/ qui permet de choisir une équipe (Ketchup / Mayo).
+
+Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game
+
+
