@@ -11,6 +11,12 @@ Installer NodeJs : https://nodejs.org/fr/
 
 ### Installation
 
+Cloner le répo :
+
+```
+https://github.com/BenjaminPoutriquet35800/app-burger-quiz.git
+```
+
 Se rendre à la base du répertoire où se trouve le fichier 'package.json' puis lancer la commande :
 
 ```
