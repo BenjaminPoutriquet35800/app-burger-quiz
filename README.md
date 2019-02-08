@@ -11,3 +11,9 @@ Se rendre à la base du repertoire où se trouve le fichier 'package.json' puis 
 ```
 npm install
 ```
+
+Une fois que les dépendances ont été installées vous pouvez lancer l'application :
+
+```
+node server.js
+```
