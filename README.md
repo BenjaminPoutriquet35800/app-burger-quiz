@@ -48,7 +48,11 @@ Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/ga
 Cette page est l'écran principal de l'application. 
 En effet elle permet l'affichage des points de chacune des équipes, de lancer les différentes transitions (nuggets, sel & poivre, menus, addition, burger de la mort) enfin de pouvoir cheese buzzer :smiley:
 
-Ouvrez enfin un dernier onglet : http://localhost:3000/admin. 
+Ouvrez enfin un dernier onglet : http://localhost:3000/admin :
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25900708/52508059-977b5380-2bf3-11e9-8e7f-9c875a5a5718.png" height="300"> 
+</p>
 
 Cette page va permettre d'administrer le jeu. Vous allez pouvoir ajouter les points des différentes équipes lancer les transitions et de bloquer / débloquer les cheeses buzzer.
 
