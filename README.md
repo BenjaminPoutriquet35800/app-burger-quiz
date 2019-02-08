@@ -44,7 +44,7 @@ Ouvrer enfin un dernier onglet : http://localhost:3000/admin.
 
 Cette page va permettre d'administrer le jeu. Vous allez pouvoir ajouter les points des différentes équipes lancer les transitions et de bloquer / débloquer les cheeses buzzer.
 
-
+NOTA : Si vous êtes sous google chrome cliquer une première fois sur la fenêtre du jeu car vous aurez une erreur de type 'Uncaught (in promise) DOMException' et l'animation ne se lancera pas.
 
 
 
