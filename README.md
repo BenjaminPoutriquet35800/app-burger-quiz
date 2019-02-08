@@ -4,7 +4,7 @@
 <img src="https://raw.githubusercontent.com/BenjaminPoutriquet35800/app-burger-quiz/master/views/public/images/backgrounds/menus.svg?sanitize=true" height="250"> 
 </p>
 
-Burger quiz est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
+:hamburger: Burger quiz est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
 
 ## Prérequis
 Installer NodeJs : https://nodejs.org/fr/
@@ -46,9 +46,9 @@ Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/ga
 </p>
 
 Cette page est l'écran principal de l'application. 
-En effet elle permet l'affichage des points de chacune des équipes, de lancer les différentes transitions (nuggets, sel & poivre, menus, addition, burger de la mort) enfin de pouvoir cheese buzzer :)
+En effet elle permet l'affichage des points de chacune des équipes, de lancer les différentes transitions (nuggets, sel & poivre, menus, addition, burger de la mort) enfin de pouvoir cheese buzzer :smiley:
 
-Ouvrer enfin un dernier onglet : http://localhost:3000/admin. 
+Ouvrez enfin un dernier onglet : http://localhost:3000/admin. 
 
 Cette page va permettre d'administrer le jeu. Vous allez pouvoir ajouter les points des différentes équipes lancer les transitions et de bloquer / débloquer les cheeses buzzer.
 
