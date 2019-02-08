@@ -37,6 +37,10 @@ Vous pouvez à présent accèder à l'application via cette adressse : http://lo
 
 Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game.
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25900708/52507593-461e9480-2bf2-11e9-9882-60ca26b7a568.png" height="250"> 
+</p>
+
 Cette page est l'écran principal de l'application. 
 En effet elle permet l'affichage des points de chacune des équipes, de lancer les différentes transitions (nuggets, sel & poivre, menus, addition, burger de la mort) enfin de pouvoir cheese buzzer :)
 
