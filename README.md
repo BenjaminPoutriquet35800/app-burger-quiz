@@ -4,7 +4,7 @@
 <img src="https://raw.githubusercontent.com/BenjaminPoutriquet35800/app-burger-quiz/master/views/public/images/backgrounds/menus.svg?sanitize=true" height="250"> 
 </p>
 
-Burger quiz de Dujardin est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
+Burger quiz est le jeu qui reprend les codes de la célèbre émission présentée par Alain Chabat. 
 
 ### Prérequis
 Installer NodeJs : https://nodejs.org/fr/
