@@ -23,13 +23,13 @@ Se rendre à la base du répertoire où se trouve le fichier **'package.json'** 
 npm install
 ```
 
+## Déploiement
+
 Une fois que les dépendances ont été installées vous pouvez lancer l'application :
 
 ```
 node server.js
 ```
-
-## Démonstration
 
 Par défaut le serveur écoute sur le port **3000**. 
 
