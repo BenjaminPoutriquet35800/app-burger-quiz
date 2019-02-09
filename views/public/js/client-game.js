@@ -194,7 +194,7 @@ const receiveBuzzAndInteractOnView = function (teamName) {
     if (!color)
         return;
     $mainBackground.hide();
-    playSound(sound);    
+    playSound(sound);
     $modalBuzz.show();
     $modalBuzz.fadeIn(0, function () {
         $(this).css('background', color).fadeOut(500, function () {
@@ -227,6 +227,15 @@ const pinupTeamBuzzFirstOnView = function (teamName) {
 }
 
 /**
+ * Se charge d'afficher la fenêtre de jeu principal
+ * Et de cacher la fenêtre de transition
+ */
+const showMainBackgroundAndHideTransition = function () {
+    $mainBackground.show();
+    $modalTransition.hide();
+}
+
+/**
  * Se charge d'afficher une transition à l'écran
  * @param {*} transitionName Le nom de la ressource à afficher
  */
@@ -237,9 +246,17 @@ const receiveOrderForTransition = function (transitionName) {
     $videoTransitionContainer.load();
     $videoTransitionContainer.get(0).play();
     $videoTransitionContainer.on('ended', function () {
-        $mainBackground.show();
-        $modalTransition.hide();
+        showMainBackgroundAndHideTransition();
     });
+}
+
+/**
+ * Se charge d'arrête une transition
+ */
+const stopTransitionNow = function () {
+    showMainBackgroundAndHideTransition();
+    $videoTransitionContainer.get(0).pause();
+    $sourceTransition.attr('src', '');
 }
 
 /**
@@ -282,6 +299,7 @@ const initSocketAndListenEvents = function () {
     socket.on(messageToClientReloadPart, function () {
         attributePointsAtTeam(mayo, 0);
         attributePointsAtTeam(ketchup, 0);
+        stopTransitionNow();
     });
     /**
      * Reception des points des différents équipes
