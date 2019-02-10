@@ -1,4 +1,4 @@
-# app-burger-quiz
+# Présentation App Burger Quiz
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/BenjaminPoutriquet35800/app-burger-quiz/master/views/public/images/backgrounds/menus.svg?sanitize=true" height="250"> 
