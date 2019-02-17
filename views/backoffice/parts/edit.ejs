@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Back Office Admin</title>
+    <% include ../../partials/header %>
+</head>
+<% include ../partials/menu %>
+
+<body class="bg-light py-5 mt-4">
+    <div class="container">
+        <div class="float-right">
+            <input type="button" class="btn btn-success" value="Enregistrer la partie">
+        </div>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs" id="tab-part" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="tab-part" data-toggle="tab" href="#part" role="tab">Partie</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab-nuggets" data-toggle="tab" href="#nuggets" role="tab">Nuggets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab-salt-pepper" data-toggle="tab" href="#salt-pepper" role="tab">Sel
+                    ou Poivre</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab-menus" data-toggle="tab" href="#menus" role="tab">Menus</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab-addition" data-toggle="tab" href="#addition" role="tab">Addition</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tab-death-burger" data-toggle="tab" href="#death-burger" role="tab">Burger
+                    de la Mort</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="part" role="tabpanel">
+                <form class="mt-4">
+                    <div class="form-group">
+                        <label>Titre :</label>
+                        <input type="text" class="form-control" placeholder="Titre de la partie" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" class="form-control" placeholder="Description de la partie" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lien image</label>
+                        <input type="text" class="form-control" placeholder="Url de l'image" required>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="nuggets" role="tabpanel">
+                <form class="mt-4">
+                    <div class="form-group">
+                        <label>Question :</label>
+                        <input type="text" class="form-control" placeholder="Entrer une question ?" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Réponse A</label>
+                        <input type="text" class="form-control" placeholder="Entrer la réponse A" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Réponse B</label>
+                        <input type="text" class="form-control" placeholder="Entrer la réponse B" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Réponse C</label>
+                        <input type="text" class="form-control" placeholder="Entrer la réponse C" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Réponse D</label>
+                        <input type="text" class="form-control" placeholder="Entrer la réponse D" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Ajouter la question</button>
+                </form>
+            </div>
+            <div class="tab-pane" id="salt-pepper" role="tabpanel">
+                <div class="form-group mt-4">
+                    <label>Theme :</label>
+                    <input type="text" class="form-control" placeholder="Theme ex : Christian clavier, un clavier ou les deux"
+                        required>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Question :</label>
+                    <input type="text" class="form-control" placeholder="Entrer une question ?" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Réponse</label>
+                    <input type="text" class="form-control" placeholder="Entrer la réponse" required>
+                </div>
+                <button type="submit" class="btn btn-success">Ajouter la question</button>
+            </div>
+            <div class="tab-pane" id="menus" role="tabpanel">
+                    ...
+            </div>
+            <div class="tab-pane" id="addition" role="tabpanel">
+                <div class="form-group mt-4">
+                    <label>Theme :</label>
+                    <input type="text" class="form-control" placeholder="Theme ex : La Réponse Est Peut-Etre Dans La Question"
+                        required>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Question :</label>
+                    <input type="text" class="form-control" placeholder="Entrer une question ?" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Réponse</label>
+                    <input type="text" class="form-control" placeholder="Entrer la réponse" required>
+                </div>
+                <button type="submit" class="btn btn-success">Ajouter la question</button>
+            </div>
+            <div class="tab-pane" id="death-burger" role="tabpanel">
+                <form class="mt-4">
+                    <div class="form-group">
+                        <label>Question :</label>
+                        <input type="text" class="form-control" placeholder="Entrer une question ?" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Réponse</label>
+                        <input type="text" class="form-control" placeholder="Entrer la réponse" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Ajouter la question</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<html>

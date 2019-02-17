@@ -16,6 +16,7 @@ function MongoDbHelper() {
 
   /**
    * Se charge d'obtenir l'instance de mongoose
+   * NOTA : mongoose est un singleton
    */
   this.getMongooseInstance = function () {
     return this.mongoose;

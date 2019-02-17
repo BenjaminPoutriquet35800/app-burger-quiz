@@ -21,7 +21,5 @@ module.exports = function (app, passport) {
    */
   app.use(function (req, res) {
     res.redirect('/');
-  });
-
-  
+  });  
 }
