@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Back Office Admin</title>
+    <% include ../../partials/header %>
+</head>
+<% include ../partials/menu %>
+
+<main role="main">
+    <div class="album py-5 bg-light mt-4">
+        <section class=" text-center m-4">
+            <div class="container">
+                <h1 class="jumbotron-heading">Liste des parties</h1>
+                <p class="lead text-muted">Ci-dessous la liste des parties qui permettront de joueur
+                    au jeu Burger Quiz.
+                </p>
+                <p>
+                    <a href="#" class="btn btn-success my-2">+ Créer une partie</a>
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <% parts.forEach(function(part){ %>
+                <%- include('../partials/vignette', {part: part}); %>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</main>
+
+</html>

@@ -1,0 +1,22 @@
+<div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+        <div class="m-4">
+            <img src="<%= part.image %>" onerror="this.src='/images/backgrounds/burger_quiz.png'" width="100%" height="225">
+        </div>
+        <div class="card-body" style="border-top: 1px solid red;">
+            <h3>
+                <%= part.title %>
+            </h3>
+            <p class="card-text">
+                <%= part.description %>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Voir</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Editer</button>
+                </div>
+                <small class="text-muted">9 mins</small>
+            </div>
+        </div>
+    </div>
+</div>

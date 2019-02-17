@@ -27,9 +27,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // Configuration de passport
 require('./config/passport')(passport);
 // On l'inject dans le router
-require('./app/routes')(app, passport);
+require('./app/routes/routes')(app, passport);
 // On déclare le jeu ici
 require('./app/game')(io);
+// Etablit la connexion à la base de données MongoDb
+require('./config/mongoConfiguration')();
 
 http.listen(3000, function () {
   console.log("listening on *:3000");
