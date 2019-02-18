@@ -9,12 +9,12 @@
 
 <body class="bg-light">
     <div class="py-5 mt-4">
-        <div class="container">
+        <!-- <div class="container">
             <div class="float-right">
                 <input type="button" class="btn btn-success" value="Enregistrer la partie">
             </div>
-        </div>
-        <div class="container">
+        </div> -->
+        <div class="container mt-4">
             <!-- Le menu -->
             <ul class="nav nav-tabs" id="tab-part" role="tablist">
                 <li class="nav-item">
@@ -60,53 +60,53 @@
                 <!-- Onglet Nuggets -->
                 <div class="tab-pane active" id="nuggets" role="tabpanel">
                     <div class="form-group mt-4">
-                        <label>Question :</label>
-                        <input id="question-nuggets" type="text" class="form-control" placeholder="Entrer une question ?"
-                            required>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>Question :</label>
+                                <input id="question-nuggets" type="text" class="form-control" placeholder="Entrer une question ?"
+                                    required>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Réponse A</label>
+                                    <input id="response-a-nuggets" type="text" class="form-control" placeholder="Entrer la réponse A"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Réponse B</label>
+                                    <input id="response-b-nuggets" type="text" class="form-control" placeholder="Entrer la réponse B"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Réponse C</label>
+                                    <input id="response-c-nuggets" type="text" class="form-control" placeholder="Entrer la réponse C"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Réponse D</label>
+                                    <input id="response-d-nuggets" type="text" class="form-control" placeholder="Entrer la réponse D"
+                                        required>
+                                </div>
+                                <input id="button-add-question-nuggets" type="button" class="btn btn-success" value="Ajouter la question">
+                                <input id="button-register-changes-question-nuggets" type="button" class="btn btn-success"
+                                    value="Enregistrer les modifications">
+                                <input id="button-cancel-changes-question-nuggets" type="button" class="btn btn-primary"
+                                    value="Annuler les modifications">
+                            </div>
+                            <!-- Le tableau des questions créées -->
+                            <div class="col-6">
+                                <table id="table-nuggets-questions" class="table mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Question</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Réponse A</label>
-                        <input id="response-a-nuggets" type="text" class="form-control" placeholder="Entrer la réponse A"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Réponse B</label>
-                        <input id="response-b-nuggets" type="text" class="form-control" placeholder="Entrer la réponse B"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Réponse C</label>
-                        <input id="response-c-nuggets" type="text" class="form-control" placeholder="Entrer la réponse C"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Réponse D</label>
-                        <input id="response-d-nuggets" type="text" class="form-control" placeholder="Entrer la réponse D"
-                            required>
-                    </div>
-                    <input id="button-add-question-nuggets" type="button" class="btn btn-success" value="Ajouter la question">
-                    <input id="button-register-changes-question-nuggets" type="button" class="btn btn-success" value="Enregistrer les modifications">
-                    <input id="button-cancel-changes-question-nuggets" type="button" class="btn btn-primary" value="Annuler les modifications">
-                    <!-- Le tableau des questions créées -->
-                    <table id="table-nuggets-questions" class="table table-hover mt-4">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Question</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- <tr>                           
-                            <td>1</td>
-                            <td>Quel est le cheval d'henri 4</td>
-                            <td>
-                                <input type="button" class="btn btn-primary" value="Modifier">
-                                <input type="button" class="btn btn-danger" value="Supprimer">
-                            </td>
-                          </tr>                          -->
-                        </tbody>
-                    </table>
                 </div>
                 <!-- Onglet Sel ou Poivre -->
                 <div class="tab-pane" id="salt-pepper" role="tabpanel">

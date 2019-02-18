@@ -54,7 +54,7 @@ const cleanupInputsForNuggets = function () {
 }
 
 const createRowForTableNuggets = function (index) {
-    var buttonModify = createButton('Modifier', 'btn btn-primary mr-4', function () {
+    var buttonModify = createButton('Modifier', 'btn btn-primary m-2', function () {
         editNuggetQuestion(index);
     });
     var buttonDelete = createButton('Supprimer', 'btn btn-danger', function () {
@@ -63,7 +63,7 @@ const createRowForTableNuggets = function (index) {
     // Construit la ligne
     $tableNuggetsQuestions.find('tbody')
         .append($('<tr>')
-            .append($('<td>').append(index))
+            .append($('<td>').append(index + 1))
             .append($('<td>').append($questionNuggets.val()))
             .append($('<td>').append(buttonModify).append(buttonDelete))
         )
@@ -120,20 +120,13 @@ const editNuggetQuestion = function (index) {
     $buttonRegsiterChangesQuestionNuggets.show();
     $buttonCancelChangesQuestionNuggets.show();
 
-    // BUG ICI INCREMENT L'EVENT 
-    $buttonRegsiterChangesQuestionNuggets.click(function () {
-        console.log('je passe ici');
+    // BUG ICI INCREMENT L'EVENT   
+    $buttonRegsiterChangesQuestionNuggets.click(function () {        
         modifyNuggetQuestion(index);
         cleanupInputsForNuggets();
         hiddenRegisterCancelChangesQuestionNuggets();
         $buttonAddQuestionNuggets.show();
-    })
-
-    $buttonCancelChangesQuestionNuggets.click(function () {
-        cleanupInputsForNuggets();
-        hiddenRegisterCancelChangesQuestionNuggets();
-        $buttonAddQuestionNuggets.show();
-    });
+    })   
 }
 
 /**
@@ -163,6 +156,16 @@ const initEvents = function () {
         var index = addNuggetsQuestion();
         createRowForTableNuggets(index);
         cleanupInputsForNuggets();
+    });
+
+    /**
+     * Se charge de nettoyer le formulaire et d'afficher les bons boutons
+     * Lorsque l'utilisateur souhaite annuler la modification d'une question
+     */
+    $buttonCancelChangesQuestionNuggets.click(function () {
+        cleanupInputsForNuggets();
+        hiddenRegisterCancelChangesQuestionNuggets();
+        $buttonAddQuestionNuggets.show();
     });
 }
 
