@@ -24,22 +24,24 @@ $tableNuggetsQuestions = $('#table-nuggets-questions');
  */
 var partToSave = new Part();
 
+/**
+ * Callback a setter pour modifier les informations
+ * D'une question nuggets
+ */
+var callBackModifyNuggetsQuestion;
+
 function createButton(value, className, func) {
-    var button = document.createElement("input");
-    button.type = "button";
+    var button = document.createElement("button");
     button.value = value;
     button.className = className;
     button.onclick = func;
     return button;
 }
 
-/**
- * Se charge de setter les informations pour une partie
- */
-const registerPartInformations = function () {
-    partToSave.title = $titlePart.val();
-    partToSave.desciption = $descriptionPart.val();
-    partToSave.image = $imagePart.val();
+function createIcon(className) {
+    var icon = document.createElement("i");
+    icon.className = className;
+    return icon;
 }
 
 /**
@@ -53,13 +55,22 @@ const cleanupInputsForNuggets = function () {
     $reponseDNuggets.val('');
 }
 
+/**
+ * Se charge de créer une ligne dans le tableau
+ * Pour les questions nuggets
+ * @param {*} index Index de la question
+ */
 const createRowForTableNuggets = function (index) {
-    var buttonModify = createButton('Modifier', 'btn btn-primary m-2', function () {
+    var buttonModify = createButton(null, 'btn btn-primary m-2', function () {
         editNuggetQuestion(index);
     });
-    var buttonDelete = createButton('Supprimer', 'btn btn-danger', function () {
+    var buttonDelete = createButton(null, 'btn btn-danger', function () {
         removeNuggetsQuestion(index);
     })
+
+    buttonModify.append(createIcon('fa fa-pencil-square-o'));
+    buttonDelete.append(createIcon('fa fa-trash'));
+
     // Construit la ligne
     $tableNuggetsQuestions.find('tbody')
         .append($('<tr>')
@@ -67,6 +78,19 @@ const createRowForTableNuggets = function (index) {
             .append($('<td>').append($questionNuggets.val()))
             .append($('<td>').append(buttonModify).append(buttonDelete))
         )
+}
+
+const modifyQuestionInTableNuggets = function (index) {
+    $tableNuggetsQuestions.find('tbody');
+}
+
+/**
+ * Se charge de setter les informations pour une partie
+ */
+const registerPartInformations = function () {
+    partToSave.title = $titlePart.val();
+    partToSave.desciption = $descriptionPart.val();
+    partToSave.image = $imagePart.val();
 }
 
 /**
@@ -108,6 +132,10 @@ const addNuggetsQuestion = function () {
  */
 const editNuggetQuestion = function (index) {
     var question = partToSave.nuggets.questions[index];
+    if (question === undefined) {
+        alertify.error('Impossible de modifier la question avec cet index');
+        return;
+    }
     $questionNuggets.val(question.wording);
     $reponseANuggets.val(question.responses[0].wording);
     $reponseBNuggets.val(question.responses[1].wording);
@@ -120,13 +148,12 @@ const editNuggetQuestion = function (index) {
     $buttonRegsiterChangesQuestionNuggets.show();
     $buttonCancelChangesQuestionNuggets.show();
 
-    // BUG ICI INCREMENT L'EVENT   
-    $buttonRegsiterChangesQuestionNuggets.click(function () {        
+    /**
+     * Sette la callback permettant de modifier la question
+     */
+    callBackModifyNuggetsQuestion = function () {
         modifyNuggetQuestion(index);
-        cleanupInputsForNuggets();
-        hiddenRegisterCancelChangesQuestionNuggets();
-        $buttonAddQuestionNuggets.show();
-    })   
+    }
 }
 
 /**
@@ -157,6 +184,16 @@ const initEvents = function () {
         createRowForTableNuggets(index);
         cleanupInputsForNuggets();
     });
+
+    /**
+     * Se charge de modifier une question pour les nuggets
+     */
+    $buttonRegsiterChangesQuestionNuggets.click(function () {
+        callBackModifyNuggetsQuestion();
+        cleanupInputsForNuggets();
+        hiddenRegisterCancelChangesQuestionNuggets();
+        $buttonAddQuestionNuggets.show();
+    })
 
     /**
      * Se charge de nettoyer le formulaire et d'afficher les bons boutons

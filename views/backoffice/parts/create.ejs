@@ -4,6 +4,7 @@
 <head>
     <title>Back Office Admin</title>
     <% include ../../partials/header %>
+    <link href="/alertifyjs/css/alertify.min.css" rel="stylesheet" />
 </head>
 <% include ../partials/menu %>
 
@@ -13,7 +14,7 @@
             <div class="float-right">
                 <input type="button" class="btn btn-success" value="Enregistrer la partie">
             </div>
-        </div> -->
+        </div> -->           
         <div class="container mt-4">
             <!-- Le menu -->
             <ul class="nav nav-tabs" id="tab-part" role="tablist">
@@ -168,7 +169,9 @@
     </div>
 </body>
 
+<script src="/alertifyjs/alertify.min.js"></script>
 <script src="/js/backoffice/models/Thematic.js"></script>
 <script src="/js/backoffice/models/Part.js"></script>
 <script src="/js/backoffice/services/servicePart.js"></script>
+
 <html>

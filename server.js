@@ -11,6 +11,8 @@ const session = require('express-session');
 //Variable globale stockant le chemin de base de l'app (compatibilité linux pour les paths)
 global.__basedir = __dirname;
 
+app.use('/alertifyjs', express.static(__dirname + '/node_modules/alertifyjs/build/'));
+app.use('/font-awesome', express.static(__dirname + '/node_modules/font-awesome/'));
 app.use(express.static(__dirname + '/views/public/'));
 app.set('views', path.join(__dirname, 'views/'));
 app.set('view engine', 'ejs');
