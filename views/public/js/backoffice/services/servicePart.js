@@ -30,20 +30,6 @@ var partToSave = new Part();
  */
 var callBackModifyNuggetsQuestion;
 
-function createButton(value, className, func) {
-    var button = document.createElement("button");
-    button.value = value;
-    button.className = className;
-    button.onclick = func;
-    return button;
-}
-
-function createIcon(className) {
-    var icon = document.createElement("i");
-    icon.className = className;
-    return icon;
-}
-
 /**
  * Se charge de vider les inputs pour le formulaire nuggets
  */
@@ -62,7 +48,7 @@ const cleanupInputsForNuggets = function () {
  */
 const createRowForTableNuggets = function (index) {
     var buttonModify = createButton(null, 'btn btn-primary m-2', function () {
-        editNuggetQuestion(index);
+        editNuggetsQuestion(index);
     });
     var buttonDelete = createButton(null, 'btn btn-danger', function () {
         removeNuggetsQuestion(index);
@@ -130,7 +116,7 @@ const addNuggetsQuestion = function () {
  * Se charge d'editer une question pour un index donné
  * @param {*} index L'index permettant de récupérer la question dans la collection
  */
-const editNuggetQuestion = function (index) {
+const editNuggetsQuestion = function (index) {
     var question = partToSave.nuggets.questions[index];
     if (question === undefined) {
         alertify.error('Impossible de modifier la question avec cet index');
