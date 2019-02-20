@@ -31,6 +31,15 @@ var partToSave = new Part();
 var callBackModifyNuggetsQuestion;
 
 /**
+ * Class Css Bootstrap qui sera setté pour un champ invalide
+ */
+const isInvalidCssClass = 'is-invalid';
+/**
+ * Le timeout par défaut pour dépop les messages
+ */
+const defaultTimeoutAlertifyMessage = 3;
+
+/**
  * Se charge de vider les inputs pour le formulaire nuggets
  */
 const cleanupInputsForNuggets = function () {
@@ -46,22 +55,25 @@ const cleanupInputsForNuggets = function () {
  * Pour les questions nuggets
  * @param {*} index Index de la question
  */
-const createRowForTableNuggets = function (index) {
+const createRowForTableNuggets = function (question) {
     var buttonModify = createButton(null, 'btn btn-primary m-2', function () {
-        editNuggetsQuestion(index);
+        editNuggetsQuestion(question);
     });
     var buttonDelete = createButton(null, 'btn btn-danger', function () {
-        removeNuggetsQuestion(index);
+        removeNuggetsQuestion(question);
     })
 
     buttonModify.append(createIcon('fa fa-pencil-square-o'));
     buttonDelete.append(createIcon('fa fa-trash'));
 
+    // Récupère l'index de la question dans la collection
+    var index = retrieveIndexQuestionNuggetsById(question);
+
     // Construit la ligne
     $tableNuggetsQuestions.find('tbody')
-        .append($('<tr>')
+        .append($(`<tr id = ${question._id}>`)
             .append($('<td>').append(index + 1))
-            .append($('<td>').append($questionNuggets.val()))
+            .append($(`<td data-name='question'>`).append($questionNuggets.val()))
             .append($('<td>').append(buttonModify).append(buttonDelete))
         )
 }
@@ -94,6 +106,8 @@ const createResponseNuggetFromInput = function ($input) {
  */
 const createNuggetsQuestionFromInputs = function () {
     return {
+        // Génère un id unique pour une question
+        _id: Math.random().toString(36).slice(2),
         wording: $questionNuggets.val(),
         responses: [
             createResponseNuggetFromInput($reponseANuggets),
@@ -108,18 +122,18 @@ const createNuggetsQuestionFromInputs = function () {
  * Se charge d'ajouter une question pour les nuggets
  */
 const addNuggetsQuestion = function () {
-    var index = partToSave.nuggets.questions.push(createNuggetsQuestionFromInputs());
-    return index - 1;
+    var question = createNuggetsQuestionFromInputs();
+    partToSave.nuggets.questions.push(question);
+    return question;
 }
 
 /**
  * Se charge d'editer une question pour un index donné
  * @param {*} index L'index permettant de récupérer la question dans la collection
  */
-const editNuggetsQuestion = function (index) {
-    var question = partToSave.nuggets.questions[index];
+const editNuggetsQuestion = function (question) {
     if (question === undefined) {
-        alertify.error('Impossible de modifier la question avec cet index');
+        alertify.error(`Impossible d'éditer la question actuellement`);
         return;
     }
     $questionNuggets.val(question.wording);
@@ -138,7 +152,7 @@ const editNuggetsQuestion = function (index) {
      * Sette la callback permettant de modifier la question
      */
     callBackModifyNuggetsQuestion = function () {
-        modifyNuggetQuestion(index);
+        modifyNuggetQuestion(question);
     }
 }
 
@@ -146,7 +160,22 @@ const editNuggetsQuestion = function (index) {
  * Se charge de modifier une question pour les nuggets
  * @param {*} index la position de la question dans la collection
  */
-const modifyNuggetQuestion = function (index) {
+const modifyNuggetQuestion = function (question) {
+    // Vérifie que la question pas undefined ou null
+    if (question === undefined || question === null) {
+        alertify.error('Impossible de pousser la modification pour cette question');
+        return;
+    }
+    // Vérifie si il y'a un id
+    if (question._id === undefined || question._id.trim() === '') {
+        alertify.error(`Impossible de pousser la modification pour cette question ` +
+            `car aucun id n'est défini`);
+        return;
+    }
+    validateQuestionNuggets();
+    // Récupère l'index de la question grâce à l'id
+    var index = retrieveIndexQuestionNuggetsById(question);
+    // Mon modifie la question avec les nouvelles valeurs
     partToSave.nuggets.questions[index] = createNuggetsQuestionFromInputs();
 }
 
@@ -154,8 +183,32 @@ const modifyNuggetQuestion = function (index) {
  * Retire une question de la collection nuggets
  * @param {*} index La position de la question dans la collection
  */
-const removeNuggetsQuestion = function (index) {
+const removeNuggetsQuestion = function (question) {
+    var index = retrieveIndexQuestionNuggetsById(question);
     partToSave.nuggets.questions.splice(index, 1);
+}
+
+/**
+ * Récupère la postion d'une question nuggets dans la collection
+ * @param {*} question la question permettant de récupérer l'index
+ */
+const retrieveIndexQuestionNuggetsById = function (question) {
+    return partToSave.nuggets.questions.findIndex(function (item) {
+        return item._id === question._id
+    });
+}
+
+/**
+ * Se charge de valider le formulaire pour les questions de type nuggets
+ */
+const validateQuestionNuggets = function () {
+    CheckInputGroups([
+        $questionNuggets,
+        $reponseANuggets,
+        $reponseBNuggets,
+        $reponseCNuggets,
+        $reponseDNuggets
+    ], 'Merci de renseigner les champs invalide pour les nuggets')
 }
 
 /**
@@ -166,9 +219,15 @@ const initEvents = function () {
      * Se charge d'ajouter une question de type nuggets
      */
     $buttonAddQuestionNuggets.click(function () {
-        var index = addNuggetsQuestion();
-        createRowForTableNuggets(index);
-        cleanupInputsForNuggets();
+        try {
+            validateQuestionNuggets();
+            var question = addNuggetsQuestion();
+            createRowForTableNuggets(question);
+            cleanupInputsForNuggets();
+            alertify.success('Question pour les nuggets ajoutée', defaultTimeoutAlertifyMessage);
+        } catch (error) {
+            alertify.error(error.message);
+        }
     });
 
     /**
@@ -205,6 +264,44 @@ const initVisibilityButtons = function () {
 const hiddenRegisterCancelChangesQuestionNuggets = function () {
     $buttonRegsiterChangesQuestionNuggets.hide();
     $buttonCancelChangesQuestionNuggets.hide();
+}
+
+/**
+ * Se charge de vérifier si un input est vide
+ * Si c'est le cas color l'input et lève une exception
+ * @param {*} $input 
+ * @param {*} message 
+ */
+const CheckInputIfEmpty = function ($input, message) {
+    // Retire si elle existe la class d'invalidation
+    $input.removeClass(isInvalidCssClass);
+    if (!($input.val().trim() === ''))
+        return;
+    // Ajoute la class permettant d'indiquer le champ invalid
+    $input.addClass(isInvalidCssClass);
+    // Lève une exception
+    throw new Error(message);
+}
+
+/**
+ * Se charge de vérifier si la liste des inputs passé en paramètre
+ * Est vide. Si un seul des inputs est vide on lève une exception
+ * @param {*} $inputs 
+ * @param {*} message 
+ */
+const CheckInputGroups = function ($inputs, message) {
+    var inputsInError = [];
+    for (var index = 0; index < $inputs.length; index++) {
+        const element = $inputs[index];
+        // Retire si elle existe la class d'invalidation
+        element.removeClass(isInvalidCssClass);
+        if (!(element.val().trim() === ''))
+            continue;
+        element.addClass(isInvalidCssClass);
+        inputsInError.push(element);
+    }
+    if (inputsInError.length > 0)
+        throw new Error(message);
 }
 
 /**
