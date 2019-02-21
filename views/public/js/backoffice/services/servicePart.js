@@ -40,6 +40,15 @@ const isInvalidCssClass = 'is-invalid';
 const defaultTimeoutAlertifyMessage = 3;
 
 /**
+ * Se charge de setter les informations pour une partie
+ */
+const registerPartInformations = function () {
+    partToSave.title = $titlePart.val();
+    partToSave.desciption = $descriptionPart.val();
+    partToSave.image = $imagePart.val();
+}
+
+/**
  * Se charge de vider les inputs pour le formulaire nuggets
  */
 const cleanupInputsForNuggets = function () {
@@ -57,18 +66,18 @@ const cleanupInputsForNuggets = function () {
  */
 const createRowForTableNuggets = function (question) {
     var buttonModify = createButton(null, 'btn btn-primary m-2', function () {
-        editNuggetsQuestion(question);
+        editNuggetsQuestion(question._id);
     });
     var buttonDelete = createButton(null, 'btn btn-danger', function () {
-        removeNuggetsQuestion(question);
+        removeNuggetsQuestion(question._id);
+        removeQuestionInTableNuggets(question._id);
+        alertify.success('Suppression de la question nuggets OK', defaultTimeoutAlertifyMessage);
     })
-
+    // Créer les icôns pour les boutons
     buttonModify.append(createIcon('fa fa-pencil-square-o'));
     buttonDelete.append(createIcon('fa fa-trash'));
-
     // Récupère l'index de la question dans la collection
-    var index = retrieveIndexQuestionNuggetsById(question);
-
+    var index = retrieveIndexQuestionNuggetsById(question._id);
     // Construit la ligne
     $tableNuggetsQuestions.find('tbody')
         .append($(`<tr id = ${question._id}>`)
@@ -78,17 +87,31 @@ const createRowForTableNuggets = function (question) {
         )
 }
 
-const modifyQuestionInTableNuggets = function (index) {
-    $tableNuggetsQuestions.find('tbody');
+/**
+ * Se charge de modifier le libellé de la question
+ * Dans le tableau de rendu d'affichage
+ * @param {*} id Id de la question
+ */
+const modifyQuestionInTableNuggets = function (id) {
+    var tableRow = document.getElementById(id);
+    if (tableRow === null)
+        return;
+    var tableCell = tableRow.querySelector('[data-name]');
+    if (tableCell === null)
+        return;
+    var question = retrieveQuestionNuggetsById(id);
+    if (question === undefined || question === null)
+        return;
+    tableCell.innerHTML = question.wording;
 }
 
 /**
- * Se charge de setter les informations pour une partie
+ * Retire du tableau des nuggets la ligne que 
+ * L'on souhaite supprimer visuellement
+ * @param {*} id L'id permettant de supprimer la ligne
  */
-const registerPartInformations = function () {
-    partToSave.title = $titlePart.val();
-    partToSave.desciption = $descriptionPart.val();
-    partToSave.image = $imagePart.val();
+const removeQuestionInTableNuggets = function (id) {
+    $(`#${id}`).remove();
 }
 
 /**
@@ -106,8 +129,6 @@ const createResponseNuggetFromInput = function ($input) {
  */
 const createNuggetsQuestionFromInputs = function () {
     return {
-        // Génère un id unique pour une question
-        _id: Math.random().toString(36).slice(2),
         wording: $questionNuggets.val(),
         responses: [
             createResponseNuggetFromInput($reponseANuggets),
@@ -120,20 +141,65 @@ const createNuggetsQuestionFromInputs = function () {
 
 /**
  * Se charge d'ajouter une question pour les nuggets
+ * Grâce au formulaire
  */
-const addNuggetsQuestion = function () {
+const addNuggetsQuestionFromInputs = function () {
     var question = createNuggetsQuestionFromInputs();
+    // Génère un id unique pour une question
+    question._id = Math.random().toString(36).slice(2);
+    return addNuggetsQuestion(question);
+}
+
+/**
+ * Se charge d'ajouter une question pour les nuggets
+ * @param {*} question la question à pousser
+ */
+const addNuggetsQuestion = function (question) {
     partToSave.nuggets.questions.push(question);
     return question;
 }
 
 /**
- * Se charge d'editer une question pour un index donné
- * @param {*} index L'index permettant de récupérer la question dans la collection
+ * Se charge de modifier une question pour les nuggets
+ * @param {*} id L'id permettant de récupérer la question dans la collection
  */
-const editNuggetsQuestion = function (question) {
-    if (question === undefined) {
-        alertify.error(`Impossible d'éditer la question actuellement`);
+const modifyNuggetQuestion = function (id) {
+    // Vérifie si il y'a un id
+    if (id === undefined || id.trim() === '') {
+        alertify.error(`Impossible de pousser la modification pour cette question car aucun id n'est défini`);
+        return;
+    }
+    validateQuestionNuggets();
+    // Récupère l'index de la question grâce à l'id
+    var index = retrieveIndexQuestionNuggetsById(id);
+    var question = createNuggetsQuestionFromInputs();
+    question = createNuggetsQuestionFromInputs();
+    question._id = id;
+    // Mon modifie la question avec les nouvelles valeurs
+    partToSave.nuggets.questions[index] = question;
+}
+
+/**
+ * Retire une question de la collection nuggets
+ * @param {*} index La position de la question dans la collection
+ */
+const removeNuggetsQuestion = function (question) {
+    var index = retrieveIndexQuestionNuggetsById(question._id);
+    partToSave.nuggets.questions.splice(index, 1);
+}
+
+/**
+ * Se charge d'editer une question pour un id donné
+ * @param {*} id L'id permettant de récupérer la question dans la collection
+ */
+const editNuggetsQuestion = function (id) {
+    if (id === undefined || id.trim() === '') {
+        alertify.error(`Impossible d'éditer la question nuggets car l'id est null`);
+        return;
+    }
+    var question = retrieveQuestionNuggetsById(id);
+    if (question === undefined || question === null) {
+        alertify.error(`Impossible d'éditer la question nuggets car elle est introuvable avec l'id ${id}`);
         return;
     }
     $questionNuggets.val(question.wording);
@@ -152,49 +218,28 @@ const editNuggetsQuestion = function (question) {
      * Sette la callback permettant de modifier la question
      */
     callBackModifyNuggetsQuestion = function () {
-        modifyNuggetQuestion(question);
+        modifyNuggetQuestion(id);
+        modifyQuestionInTableNuggets(id);
     }
 }
 
 /**
- * Se charge de modifier une question pour les nuggets
- * @param {*} index la position de la question dans la collection
+ * Récupère une question nuggets grâce à son id
+ * @param {*} id 
  */
-const modifyNuggetQuestion = function (question) {
-    // Vérifie que la question pas undefined ou null
-    if (question === undefined || question === null) {
-        alertify.error('Impossible de pousser la modification pour cette question');
-        return;
-    }
-    // Vérifie si il y'a un id
-    if (question._id === undefined || question._id.trim() === '') {
-        alertify.error(`Impossible de pousser la modification pour cette question ` +
-            `car aucun id n'est défini`);
-        return;
-    }
-    validateQuestionNuggets();
-    // Récupère l'index de la question grâce à l'id
-    var index = retrieveIndexQuestionNuggetsById(question);
-    // Mon modifie la question avec les nouvelles valeurs
-    partToSave.nuggets.questions[index] = createNuggetsQuestionFromInputs();
-}
-
-/**
- * Retire une question de la collection nuggets
- * @param {*} index La position de la question dans la collection
- */
-const removeNuggetsQuestion = function (question) {
-    var index = retrieveIndexQuestionNuggetsById(question);
-    partToSave.nuggets.questions.splice(index, 1);
+const retrieveQuestionNuggetsById = function (id) {
+    return partToSave.nuggets.questions.find(function (item) {
+        return item._id === id;
+    });
 }
 
 /**
  * Récupère la postion d'une question nuggets dans la collection
- * @param {*} question la question permettant de récupérer l'index
+ * @param {*} id Id de la question permettant de récupérer l'index
  */
-const retrieveIndexQuestionNuggetsById = function (question) {
+const retrieveIndexQuestionNuggetsById = function (id) {
     return partToSave.nuggets.questions.findIndex(function (item) {
-        return item._id === question._id
+        return item._id === id
     });
 }
 
@@ -208,7 +253,7 @@ const validateQuestionNuggets = function () {
         $reponseBNuggets,
         $reponseCNuggets,
         $reponseDNuggets
-    ], 'Merci de renseigner les champs invalide pour les nuggets')
+    ], 'Merci de renseigner les champs invalides pour les nuggets')
 }
 
 /**
@@ -221,7 +266,7 @@ const initEvents = function () {
     $buttonAddQuestionNuggets.click(function () {
         try {
             validateQuestionNuggets();
-            var question = addNuggetsQuestion();
+            var question = addNuggetsQuestionFromInputs();
             createRowForTableNuggets(question);
             cleanupInputsForNuggets();
             alertify.success('Question pour les nuggets ajoutée', defaultTimeoutAlertifyMessage);
@@ -234,10 +279,15 @@ const initEvents = function () {
      * Se charge de modifier une question pour les nuggets
      */
     $buttonRegsiterChangesQuestionNuggets.click(function () {
-        callBackModifyNuggetsQuestion();
-        cleanupInputsForNuggets();
-        hiddenRegisterCancelChangesQuestionNuggets();
-        $buttonAddQuestionNuggets.show();
+        try {
+            callBackModifyNuggetsQuestion();
+            cleanupInputsForNuggets();
+            hiddenRegisterCancelChangesQuestionNuggets();
+            $buttonAddQuestionNuggets.show();
+            alertify.success('Question pour les nuggets modifiée', defaultTimeoutAlertifyMessage);
+        } catch (error) {
+            alertify.error(error.message);
+        }
     })
 
     /**
