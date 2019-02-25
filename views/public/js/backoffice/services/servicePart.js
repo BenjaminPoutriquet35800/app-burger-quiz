@@ -16,8 +16,18 @@ $reponseDNuggets = $('#response-d-nuggets');
 $buttonAddQuestionNuggets = $('#button-add-question-nuggets');
 $buttonRegsiterChangesQuestionNuggets = $('#button-register-changes-question-nuggets');
 $buttonCancelChangesQuestionNuggets = $('#button-cancel-changes-question-nuggets');
-
 $tableNuggetsQuestions = $('#table-nuggets-questions');
+
+/**
+ * Composants lié aux sel ou poivre
+ */
+$themeSaltOrPepper = $('#theme-salt-pepper');
+$questionSaltOrPepper = $('#question-salt-pepper');
+$responseSaltOrPepper = $('#response-salt-pepper');
+$buttonAddQuestionSaltOrPepper = $('#button-add-salt-pepper');
+$buttonRegsiterChangesQuestionSp = $('#button-register-changes-question-sp');
+$buttonCancelChangesQuestionSp = $('#button-cancel-changes-question-sp');
+$tableSaltOrPepperQuestions = $('#table-salt-pepper-questions');
 
 /**
  * L'objet partie que l'on va enregistrer par la suite
@@ -169,7 +179,7 @@ const modifyNuggetQuestion = function (id) {
         alertify.error(`Impossible de pousser la modification pour cette question car aucun id n'est défini`);
         return;
     }
-    validateQuestionNuggets();
+    validateInputsNuggets();
     // Récupère l'index de la question grâce à l'id
     var index = retrieveIndexQuestionNuggetsById(id);
     var question = createNuggetsQuestionFromInputs();
@@ -246,14 +256,61 @@ const retrieveIndexQuestionNuggetsById = function (id) {
 /**
  * Se charge de valider le formulaire pour les questions de type nuggets
  */
-const validateQuestionNuggets = function () {
+const validateInputsNuggets = function () {
     CheckInputGroups([
         $questionNuggets,
         $reponseANuggets,
         $reponseBNuggets,
         $reponseCNuggets,
         $reponseDNuggets
-    ], 'Merci de renseigner les champs invalides pour les nuggets')
+    ],
+        isInvalidCssClass,
+        `Merci de renseigner les champs invalides pour l'onglet nuggets`);
+}
+
+/**
+ * Se charge de vider les inputs pour le formulaire sel ou poivre 
+ * Uniquement l'input question & reponse
+ */
+const cleanupInputsForSaltOrPepper = function () {
+    //$themeSaltOrPepper.val('');
+    $questionSaltOrPepper.val('');
+    $responseSaltOrPepper.val('');
+}
+
+/**
+ * Se charge d'ajouter une question pour
+ * Les sel ou poivre grâce au formulaire
+ */
+const addSaltOrPepperQuestionFromInputs = function () {
+    var question = {
+        _id: Math.random().toString(36).slice(2),
+        question: $questionSaltOrPepper.val(),
+        response: $responseSaltOrPepper.val()
+    }
+    return addSaltOrPepperQuestion(question);
+}
+/**
+ * Se charge d'ajouter une question pour les sel ou poivre
+ * @param {*} question la question à pousser
+*/
+const addSaltOrPepperQuestion = function (question) {
+    partToSave.saltOrPepper.questions.push(question);
+    console.log(partToSave);
+    return question;
+}
+
+/**
+ * Se charge de valider le formulaire pour les questions de type sel ou poivre
+ */
+const validateInputsSaltOrPepper = function () {
+    CheckInputGroups([
+        $themeSaltOrPepper,
+        $questionSaltOrPepper,
+        $responseSaltOrPepper
+    ],
+        isInvalidCssClass,
+        `Merci de renseigner les champs invalides pour l'onglet sel ou poivre`);
 }
 
 /**
@@ -265,7 +322,7 @@ const initEvents = function () {
      */
     $buttonAddQuestionNuggets.click(function () {
         try {
-            validateQuestionNuggets();
+            validateInputsNuggets();
             var question = addNuggetsQuestionFromInputs();
             createRowForTableNuggets(question);
             cleanupInputsForNuggets();
@@ -299,17 +356,35 @@ const initEvents = function () {
         hiddenRegisterCancelChangesQuestionNuggets();
         $buttonAddQuestionNuggets.show();
     });
+
+    /**
+     * Se charge d'ajouter une question de type sel ou poivre
+     */
+    $buttonAddQuestionSaltOrPepper.click(function () {
+        try {
+            validateInputsSaltOrPepper();
+            var question = addSaltOrPepperQuestionFromInputs();
+            cleanupInputsForSaltOrPepper();
+            alertify.success('Question pour sel ou poivre ajoutée', defaultTimeoutAlertifyMessage);
+        } catch (error) {
+            alertify.error(error.message);
+        }
+    });
 }
 
+/**
+ * Se charge de cacher les boutons permettant l'édition d'une question
+ */
 const initVisibilityButtons = function () {
-    // Cache les boutons de modification par défaut
-    $buttonRegsiterChangesQuestionNuggets.hide();
-    $buttonCancelChangesQuestionNuggets.hide();
+    // Nuggets
+    hiddenRegisterCancelChangesQuestionNuggets();
+    // Sel ou Poivre
+    hiddenRegisterCancelChangesQuestionSp();
 }
 
 /**
  * Cache les boutons de modification ou d'annulation
- * Lors de l'édition d'une question
+ * Lors de l'édition d'une question nuggets
  */
 const hiddenRegisterCancelChangesQuestionNuggets = function () {
     $buttonRegsiterChangesQuestionNuggets.hide();
@@ -317,41 +392,12 @@ const hiddenRegisterCancelChangesQuestionNuggets = function () {
 }
 
 /**
- * Se charge de vérifier si un input est vide
- * Si c'est le cas color l'input et lève une exception
- * @param {*} $input 
- * @param {*} message 
+ * Cache les boutons de modification ou d'annulation
+ * Lors de l'édition d'une question sel ou poivre
  */
-const CheckInputIfEmpty = function ($input, message) {
-    // Retire si elle existe la class d'invalidation
-    $input.removeClass(isInvalidCssClass);
-    if (!($input.val().trim() === ''))
-        return;
-    // Ajoute la class permettant d'indiquer le champ invalid
-    $input.addClass(isInvalidCssClass);
-    // Lève une exception
-    throw new Error(message);
-}
-
-/**
- * Se charge de vérifier si la liste des inputs passé en paramètre
- * Est vide. Si un seul des inputs est vide on lève une exception
- * @param {*} $inputs 
- * @param {*} message 
- */
-const CheckInputGroups = function ($inputs, message) {
-    var inputsInError = [];
-    for (var index = 0; index < $inputs.length; index++) {
-        const element = $inputs[index];
-        // Retire si elle existe la class d'invalidation
-        element.removeClass(isInvalidCssClass);
-        if (!(element.val().trim() === ''))
-            continue;
-        element.addClass(isInvalidCssClass);
-        inputsInError.push(element);
-    }
-    if (inputsInError.length > 0)
-        throw new Error(message);
+const hiddenRegisterCancelChangesQuestionSp = function () {
+    $buttonRegsiterChangesQuestionSp.hide();
+    $buttonCancelChangesQuestionSp.hide();
 }
 
 /**

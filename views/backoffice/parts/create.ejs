@@ -23,10 +23,10 @@
                     <a class="nav-link" id="tab-part" data-toggle="tab" href="#part" role="tab">Partie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="tab-nuggets" data-toggle="tab" href="#nuggets" role="tab">Nuggets</a>
+                    <a class="nav-link" id="tab-nuggets" data-toggle="tab" href="#nuggets" role="tab">Nuggets</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab-salt-pepper" data-toggle="tab" href="#salt-pepper" role="tab">Sel
+                    <a class="nav-link active" id="tab-salt-pepper" data-toggle="tab" href="#salt-pepper" role="tab">Sel
                         ou Poivre</a>
                 </li>
                 <li class="nav-item">
@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <!-- Onglet Nuggets -->
-                <div class="tab-pane active" id="nuggets" role="tabpanel">
+                <div class="tab-pane" id="nuggets" role="tabpanel">
                     <div class="form-group mt-4">
                         <div class="row">
                             <div class="col-6">
@@ -69,24 +69,20 @@
                                     <input id="question-nuggets" type="text" class="form-control" placeholder="Entrer une question ?">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Réponse A</label>
-                                    <input id="response-a-nuggets" type="text" class="form-control" placeholder="Entrer la réponse A"
-                                        required>
+                                    <label>Réponse A</label>
+                                    <input id="response-a-nuggets" type="text" class="form-control" placeholder="Entrer la réponse A">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Réponse B</label>
-                                    <input id="response-b-nuggets" type="text" class="form-control" placeholder="Entrer la réponse B"
-                                        required>
+                                    <label>Réponse B</label>
+                                    <input id="response-b-nuggets" type="text" class="form-control" placeholder="Entrer la réponse B">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Réponse C</label>
-                                    <input id="response-c-nuggets" type="text" class="form-control" placeholder="Entrer la réponse C"
-                                        required>
+                                    <label>Réponse C</label>
+                                    <input id="response-c-nuggets" type="text" class="form-control" placeholder="Entrer la réponse C">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Réponse D</label>
-                                    <input id="response-d-nuggets" type="text" class="form-control" placeholder="Entrer la réponse D"
-                                        required>
+                                    <label>Réponse D</label>
+                                    <input id="response-d-nuggets" type="text" class="form-control" placeholder="Entrer la réponse D">
                                 </div>
                                 <input id="button-add-question-nuggets" type="button" class="btn btn-success" value="Ajouter la question">
                                 <input id="button-register-changes-question-nuggets" type="button" class="btn btn-success"
@@ -112,22 +108,47 @@
                     </div>
                 </div>
                 <!-- Onglet Sel ou Poivre -->
-                <div class="tab-pane" id="salt-pepper" role="tabpanel">
+                <div class="tab-pane active" id="salt-pepper" role="tabpanel">
                     <div class="form-group mt-4">
-                        <label>Theme :</label>
-                        <input type="text" class="form-control" placeholder="Theme ex : Christian clavier, un clavier ou les deux"
-                            required>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Theme :</label>
+                                    <input id="theme-salt-pepper" type="text" class="form-control" placeholder="Theme ex : Christian clavier, un clavier ou les deux">
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <label>Question :</label>
+                                    <input id="question-salt-pepper" type="text" class="form-control" placeholder="Entrer une question ?"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Réponse</label>
+                                    <input id="response-salt-pepper" type="text" class="form-control" placeholder="Entrer la réponse"
+                                        required>
+                                </div>
+                                <input id="button-add-salt-pepper" type="button" class="btn btn-success" value="Ajouter la question">
+                                <input id="button-register-changes-question-sp" type="button" class="btn btn-success"
+                                    value="Enregistrer les modifications">
+                                <input id="button-cancel-changes-question-sp" type="button" class="btn btn-primary"
+                                    value="Annuler les modifications">
+                            </div>
+                            <!-- Le tableau des questions créées -->
+                            <div class="col-6">
+                                <table id="table-salt-pepper-questions" class="table mt-4">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Question</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="form-group">
-                        <label>Question :</label>
-                        <input type="text" class="form-control" placeholder="Entrer une question ?" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Réponse</label>
-                        <input type="text" class="form-control" placeholder="Entrer la réponse" required>
-                    </div>
-                    <button type="submit" class="btn btn-success">Ajouter la question</button>
                 </div>
                 <!-- Onglet Menus -->
                 <div class="tab-pane" id="menus" role="tabpanel">
@@ -175,6 +196,7 @@
 <script src="/js/backoffice/models/Thematic.js"></script>
 <script src="/js/backoffice/models/Part.js"></script>
 <script src="/js/utils/builder-view.js"></script>
+<script src="/js/utils/validation-input.js"></script>
 <script src="/js/backoffice/services/servicePart.js"></script>
 
 <html>
