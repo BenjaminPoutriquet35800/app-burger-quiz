@@ -7,18 +7,22 @@ function PartRespository() {
     /**
      * Récupère toutes les parties
      */
-    this.findAll = function (callBackGetResults) {
-        Part.find({}, function (err, parts) {
-            callBackGetResults(err, parts);
-        }).orFail(callBackGetResults(new Error(`Impossible d'accèder aux parties pour le moment`), []));
+    this.findAll = async function (callBackGetResults) {
+        Part.find({}).exec().then(function (parts) {
+            callBackGetResults(null, parts);
+        }).catch(function (error) {
+            callBackGetResults(error, []);
+        })
     }
     /**
      * Recherche une partie grâce à son id
      */
     this.findById = function (id, callBackGetResult) {
-        Part.findById(id, function (err, part) {
-            callBackGetResult(err, part);
-        }).orFail(callBackGetResult(new Error(`Impossible d'accèder à cette partie ${id} pour le moment`), {}));
+        Part.findById(id).exec().then(function(part){
+            callBackGetResult(null, part);
+        }).catch(function(error){
+            callBackGetResult(error, null);
+        })
     }
     /**
      * Se charge de sauvegarder une partie

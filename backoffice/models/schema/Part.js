@@ -68,6 +68,10 @@ module.exports = function (mongoose) {
         addition: additionSchema,
         deathBurger: deathBurgerSchema
     });
+    // Désactive la mise en mémoire tampon
+    // Permet lors d'une requête si une connexion n'est pas établie
+    // De ne pas attendre et de lever une exception
+    mongoose.set('bufferCommands', false);
     var Part = mongoose.model('Part', partSchema);
     return Part;
 }

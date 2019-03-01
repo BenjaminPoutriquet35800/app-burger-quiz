@@ -29,6 +29,18 @@ $buttonRegsiterChangesQuestionSp = $('#button-register-changes-question-sp');
 $buttonCancelChangesQuestionSp = $('#button-cancel-changes-question-sp');
 $tableSaltOrPepperQuestions = $('#table-salt-pepper-questions');
 
+
+/**
+ * Composants lié à l'addition
+ */
+$themeAddition = $('#theme-addition');
+$questionAddition = $('#question-addition');
+$responseAddition = $('#response-addition');
+$buttonAddQuestionAddition = $('#button-add-addition');
+$buttonRegsiterChangesQuestionAddition = $('#button-register-changes-question-addition');
+$buttonCancelChangesQuestionAddition = $('#button-cancel-changes-question-addition');
+$tableAdditionQuestions = $('#table-addition-questions');
+
 /**
  * L'objet partie que l'on va enregistrer par la suite
  */
@@ -45,6 +57,12 @@ var callBackModifyNuggetsQuestion;
  * D'une question sel ou poivre
  */
 var callBackModifySaltOrPepperQuestion;
+
+/**
+ * Callback a setter pour modifier les informations
+ * D'une question addition
+ */
+var callBackModifyAdditionQuestion;
 
 /**
  * Class Css Bootstrap qui sera setté pour un champ invalide
@@ -309,7 +327,7 @@ const modifySaltOrPepperQuestion = function (id) {
         question: $questionSaltOrPepper.val(),
         response: $responseSaltOrPepper.val()
     }
-    question._id = id;
+    question._id = id;    
     // Mon modifie la question avec les nouvelles valeurs
     partToSave.saltOrPepper.questions[index] = question;
 }
@@ -321,7 +339,7 @@ const modifySaltOrPepperQuestion = function (id) {
  */
 const modifyQuestionInTableSaltOrPepper = function (id) {
     baseModifyQuestionInTable(id, function (id) {
-        var question = retrieveQuestionSaltOrPepperById(id);
+        var question = retrieveQuestionSaltOrPepperById(id);        
         if (question === undefined || question === null)
             return '';
         return question.question;
@@ -368,31 +386,22 @@ const removeSaltOrPepperQuestion = function (id) {
 }
 
 /**
- * Retire du tableau la ligne que
- * L'on souhaite supprimer visuellement
- * @param {*} id L'id permettant de supprimer la ligne
+ * Récupère une question sel ou poivre grâce à son id
+ * @param {*} id 
  */
-const baseRemoveQuestionInTable = function (id) {
-    $(`#${id}`).remove();
+const retrieveIndexQuestionSaltOrPepperById = function (id) {
+    return partToSave.saltOrPepper.questions.findIndex(function (item) {
+        return item._id === id;
+    });
 }
 
 /**
  * Récupère une question sel ou poivre grâce à son id
  * @param {*} id 
  */
-const retrieveQuestionSaltOrPepperById = function (id) {
+const retrieveQuestionSaltOrPepperById  = function (id) {
     return partToSave.saltOrPepper.questions.find(function (item) {
         return item._id === id;
-    });
-}
-
-/**
- * Récupère la postion d'une question sel ou poivre dans la collection
- * @param {*} id Id de la question permettant de récupérer l'index
- */
-const retrieveIndexQuestionSaltOrPepperById = function (id) {
-    return partToSave.saltOrPepper.questions.findIndex(function (item) {
-        return item._id === id
     });
 }
 
@@ -407,6 +416,166 @@ const validateInputsSaltOrPepper = function () {
     ],
         isInvalidCssClass,
         `Merci de renseigner les champs invalides pour l'onglet sel ou poivre`);
+}
+
+/**
+ * Se charge de vider les inputs pour le formulaire addition
+ * Uniquement l'input question & reponse
+ */
+const cleanupInputsForAddition = function () {
+    $questionAddition.val('');
+    $responseAddition.val('');
+}
+
+/**
+ * Se charge de créer une ligne dans le tableau
+ * Pour les questions addition
+ * @param {*} question La question
+ */
+const createRowForTableAddition = function (question) {
+    baseCreateRowForTable($tableAdditionQuestions, $questionAddition, question, editAdditionQuestion, function (id) {
+        removeAdditionQuestion(id);
+        baseRemoveQuestionInTable(id);
+    });
+}
+
+/**
+ * Se charge d'ajouter une question pour
+ * L'addition grâce au formulaire
+ */
+const addAdditionQuestionFromInputs = function () {
+    var question = {
+        _id: generateUniqueId(),
+        question: $questionAddition.val(),
+        response: $responseAddition.val()
+    }
+    $questionAddition.focus();
+    return addAdditionQuestion(question);
+}
+
+/**
+ * Se charge d'ajouter une question pour l'addition
+ * @param {*} question la question à pousser
+*/
+const addAdditionQuestion = function (question) {
+    partToSave.addition.questions.push(question);
+    return question;
+}
+
+/**
+ * Se charge de modifier une question pour les questions type addition
+ * @param {*} id L'id permettant de récupérer la question dans la collection
+ */
+const modifyAdditionQuestion = function (id) {
+    // Vérifie si il y'a un id
+    if (id === undefined || id.trim() === '') {
+        throw new Error(`Impossible de pousser la modification pour cette question car aucun id n'est défini`)
+    }
+    validateInputsAddition();
+    // Récupère l'index de la question grâce à l'id
+    var index = retrieveIndexQuestionAdditionById(id);
+    var question = {
+        question: $questionAddition.val(),
+        response: $responseAddition.val()
+    }
+    question._id = id;
+    // Mon modifie la question avec les nouvelles valeurs
+    partToSave.addition.questions[index] = question;
+}
+
+/**
+ * Se charge de modifier le libellé de la question
+ * Dans le tableau de rendu d'affichage
+ * @param {*} id Id de la question
+ */
+const modifyQuestionInTableAddition = function (id) {
+    baseModifyQuestionInTable(id, function (id) {
+        var question = retrieveQuestionAdditionById(id);
+        if (question === undefined || question === null)
+            return '';
+        return question.question;
+    })
+}
+
+/**
+ * Se charge d'editer une question pour un id donné
+ * @param {*} id L'id permettant de récupérer la question dans la collection
+ */
+const editAdditionQuestion = function (id) {
+    if (id === undefined || id.trim() === '') {
+        alertify.error(`Impossible d'éditer la question sel ou poivre car l'id est null`);
+        return;
+    }
+    var question = retrieveQuestionAdditionById(id);
+    if (question === undefined || question === null) {
+        alertify.error(`Impossible d'éditer la question sel ou poivre car elle est introuvable avec l'id ${id}`);
+        return;
+    }
+    $questionAddition.val(question.question);
+    $responseAddition.val(question.response);
+    // Cache le bouton d'ajout
+    $buttonAddQuestionSaltOrPepper.hide();
+    // Affiche les boutons de modifications
+    $buttonRegsiterChangesQuestionSp.show();
+    $buttonCancelChangesQuestionSp.show();
+    /**
+     * Sette la callback permettant de modifier la question
+     */
+    callBackModifyAdditionQuestion = function () {
+        modifyAdditionQuestion(id);
+        modifyQuestionInTableAddition(id);
+    }
+}
+
+/**
+ * Retire une question de la collection sel ou poivre
+ * @param {*} Id L'id de la question
+ */
+const removeAdditionQuestion = function (id) {
+    var index = retrieveIndexQuestionSaltOrPepperById(id);
+    partToSave.addition.questions.splice(index, 1);
+}
+
+/**
+ * Récupère une question addition grâce à son id
+ * @param {*} id 
+ */
+const retrieveQuestionAdditionById = function (id) {
+    return partToSave.addition.questions.find(function (item) {
+        return item._id === id;
+    });
+}
+
+/**
+ * Récupère la postion d'une question addition dans la collection
+ * @param {*} id Id de la question permettant de récupérer l'index
+ */
+const retrieveIndexQuestionAdditionById = function (id) {
+    return partToSave.addition.questions.findIndex(function (item) {
+        return item._id === id
+    });
+}
+
+/**
+ * Se charge de valider le formulaire pour les questions de type addition
+ */
+const validateInputsAddition = function () {
+    CheckInputGroups([
+        $themeAddition,
+        $questionAddition,
+        $responseAddition
+    ],
+        isInvalidCssClass,
+        `Merci de renseigner les champs invalides pour l'onglet addition`);
+}
+
+/**
+ * Retire du tableau la ligne que
+ * L'on souhaite supprimer visuellement
+ * @param {*} id L'id permettant de supprimer la ligne
+ */
+const baseRemoveQuestionInTable = function (id) {
+    $(`#${id}`).remove();
 }
 
 /**
@@ -451,7 +620,7 @@ const baseModifyQuestionInTable = function (id, callBackWording) {
     if (tableCell === null)
         return;
     if (typeof callBackWording !== 'function')
-        return;
+        return;    
     tableCell.innerHTML = truncateText(callBackWording(id), defaultTruncateQuestionText);;
 }
 
@@ -544,6 +713,22 @@ const initEvents = function () {
             $buttonAddQuestionSaltOrPepper.show();
         }, 'Question pour le sel ou poivre modifiée');
     });
+
+    /**
+     * Se charge de nettoyer le formulaire et d'afficher les bons boutons
+     * Lorsque l'utilisateur souhaite annuler la modification d'une question
+     */
+    $buttonCancelChangesQuestionSp.click(function () {
+        cleanupInputsForSaltOrPepper();
+        hiddenRegisterCancelChangesQuestionSp();
+        $buttonAddQuestionSaltOrPepper.show();
+    });
+
+    $buttonAddQuestionAddition.click(function() {
+        baseClickAddQuestion(validateInputsAddition, addAdditionQuestion,
+            createRowForTableAddition, cleanupInputsForAddition,
+            'Question pour les addition ajoutée');
+    });
 }
 
 /**
@@ -554,6 +739,8 @@ const initVisibilityButtons = function () {
     hiddenRegisterCancelChangesQuestionNuggets();
     // Sel ou Poivre
     hiddenRegisterCancelChangesQuestionSp();
+    // Addition
+    hiddenRegisterCancelChangesQuestionAddition();
 }
 
 /**
@@ -572,6 +759,15 @@ const hiddenRegisterCancelChangesQuestionNuggets = function () {
 const hiddenRegisterCancelChangesQuestionSp = function () {
     $buttonRegsiterChangesQuestionSp.hide();
     $buttonCancelChangesQuestionSp.hide();
+}
+
+/**
+ * Cache les boutons de modification ou d'annulation
+ * Lors de l'édition d'une question addition
+ */
+const hiddenRegisterCancelChangesQuestionAddition = function () {
+    $buttonRegsiterChangesQuestionAddition.hide();
+    $buttonCancelChangesQuestionAddition.hide();
 }
 
 /**
