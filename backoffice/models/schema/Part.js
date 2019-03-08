@@ -20,7 +20,7 @@ module.exports = function (mongoose) {
     var questionOtherSchema = new mongoose.Schema({
         question: String,
         repsonse: String,
-        imageQuestion : String
+        imageQuestion: String
     });
 
     /**
@@ -60,18 +60,21 @@ module.exports = function (mongoose) {
     var partSchema = new mongoose.Schema({
         title: String,
         description: String,
-        isArchive: Boolean,        
+        isArchive: Boolean,
         image: String,
         nuggets: nuggetsSchema,
         saltOrPepper: saltOrPepperSchema,
         menus: menusSchema,
         addition: additionSchema,
         deathBurger: deathBurgerSchema
+    }, {
+        /**
+         * Désactive la mise en mémoire tampon
+         * Permet lors d'une requête si une connexion n'est pas établie
+         * De ne pas attendre et de lever une exception
+         */
+        bufferCommands: false
     });
-    // Désactive la mise en mémoire tampon
-    // Permet lors d'une requête si une connexion n'est pas établie
-    // De ne pas attendre et de lever une exception
-    mongoose.set('bufferCommands', false);
     var Part = mongoose.model('Part', partSchema);
     return Part;
 }

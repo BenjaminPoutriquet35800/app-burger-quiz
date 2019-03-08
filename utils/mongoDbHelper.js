@@ -25,8 +25,8 @@ function MongoDbHelper() {
   /**
    * Se connecter au serveur MongoDb
    */
-  this.connectToServer = function (server, callBackOnSuccess, callBackOnError) {
-    this.mongoose.connect(server, {
+  this.connectToServer = function (serverUri, options, callBackOnSuccess, callBackOnError) {
+    this.mongoose.connect(serverUri, {
       useNewUrlParser: true
     }).then(
       () => {
@@ -43,6 +43,18 @@ function MongoDbHelper() {
       }
     );
   }
+
+  /**
+   * Désactive la mise en mémoire tampon
+   * Permet lors d'une requête si une connexion n'est pas établie
+   * De ne pas attendre et de lever une exception
+   */
+  this.disabledBufferCommands = function () {
+    mongoose.set('bufferCommands', false);
+  }
+
+
+
 }
 
 module.exports = MongoDbHelper;
