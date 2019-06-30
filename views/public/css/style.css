@@ -13,10 +13,19 @@ body {
     display: none;
 }
 
-.lock-buzz-button {
+.container-buzzer{
+    width: 500px;
+}
+
+.container-buzzer #buzz-button{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.container-buzzer .lock-buzz-button {
     opacity: 0.4;
     filter: alpha(opacity=40);
-    /* msie */
     background-color: #000;
 }
 
