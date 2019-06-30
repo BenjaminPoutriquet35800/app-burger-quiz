@@ -13,22 +13,6 @@ body {
     display: none;
 }
 
-.container-buzzer{
-    width: 500px;
-}
-
-.container-buzzer #buzz-button{
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.container-buzzer .lock-buzz-button {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
-    background-color: #000;
-}
-
 #game-background {
     padding: 1%;
 }
@@ -124,8 +108,32 @@ body {
     background: #C71000;
 }
 
+/**************************/
+/*       ECRAN BUZZER     */
+/**************************/
+
+.container-buzzer{
+    width: 500px;
+}
+
+.container-buzzer #buzz-button{
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Permet de ne pas faire de zoom 
+    Lorsque l'utilisateur est sur mobile et qu'il spam le click
+    FIX : IOS Safari */
+    touch-action: manipulation;
+}
+
+.container-buzzer .lock-buzz-button {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background-color: #000;
+}
+
 .buzzer-container-team {
-    width: 100px;
+    width: 150px;
     margin: 10px;
 }
 
@@ -133,10 +141,4 @@ body {
     display: block;
     width: 100%;
     height: auto;
-}
-
-@media only screen and (max-width : 480px) {
-    .buzzer-container-team {
-        width: 150px;
-    }
 }
