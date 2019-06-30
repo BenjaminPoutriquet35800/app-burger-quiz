@@ -1,5 +1,3 @@
-/* @import url('../node_modules/font-awesome/css/font-awesome.min.css'); */
-
 html,
 body {
     height: 100%;
@@ -7,6 +5,10 @@ body {
     background: black !important;
     overflow-y: auto;
 }
+
+/**************************/
+/*        ECRAN JEU       */
+/**************************/
 
 #modal-buzz {
     height: 100%;

@@ -7,12 +7,12 @@ module.exports = function (app, passport) {
   /**
    * Importe les routes pour jouer
    */
-  require('./routes-game')(app, passport, basePathViews);
+  require('./game')(app, passport, basePathViews);
 
   /**
    * Importe le back office d'édition des parties
    */
-  require('./routes-backoffice')(app,basePathViews);
+  require('./backoffice')(app,basePathViews);
 
   /**
    * Permet de rediriger sur la home

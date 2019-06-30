@@ -7,7 +7,7 @@ module.exports = function (app, basePathViews) {
     const partRepository = new PartRespository();
 
     /**
-     * Liste des parties
+     * Route permettant de rendre la vue avecc la liste des parties
      */
     app.get("/parts", function (req, res) {
         partRepository.findAll(function (err, parts) {
@@ -19,7 +19,7 @@ module.exports = function (app, basePathViews) {
     });
 
     /**
-     * Route permettant la création d'une nouvelle partie
+     * Route permettant de rendre la vue pour la création d'une nouvelle partie
      */
     app.get("/part/create", function (req, res) {
         res.render(basePathViews + "/backoffice/parts/create");
