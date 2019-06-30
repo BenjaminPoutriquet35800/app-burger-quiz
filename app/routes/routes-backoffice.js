@@ -1,4 +1,4 @@
-const PartRespository = require('../../backoffice/repositories/partRepository');
+const PartRespository = require('../repositories/backoffice/partRepository');
 
 module.exports = function (app, basePathViews) {
     /**

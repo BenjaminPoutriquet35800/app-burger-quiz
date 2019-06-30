@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Part = require('../models/schema/Part')(mongoose);
+const Part = require('../../models//backoffice/schema/Part')(mongoose);
 /**
  * Couche d'accès aux données des parties
  */

@@ -1,6 +1,6 @@
 var path = require('path');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require(path.join(__basedir,'app/models/user'));
+const User = require(path.join(__basedir,'app/models/game/user'));
 
 // expose this function to our app using module.exports
 module.exports = function (passport) {

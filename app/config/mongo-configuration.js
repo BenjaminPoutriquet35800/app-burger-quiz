@@ -1,4 +1,4 @@
-const MongoDbHelper = require('./../utils/mongoDbHelper');
+const MongoDbHelper = require('../utils/mongoDbHelper');
 
 module.exports = function () {
     const initConnectionToMongoDb = function () {

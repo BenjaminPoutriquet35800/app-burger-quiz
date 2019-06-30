@@ -1,9 +1,10 @@
 var path = require('path');
 
+// Fonction en charge de gérer le jeu
 module.exports = function (io) {
-    const Team = require(path.join(global.__basedir,'app/models/team'));
-    const Transition = require(path.join(global.__basedir,'app/models/transition'));
-    const messages = require(path.join(global.__basedir,'config/messages-socket'));
+    const Team = require(path.join(global.__basedir,'app/models/game/team'));
+    const Transition = require(path.join(global.__basedir,'app/models/game/transition'));
+    const messages = require(path.join(global.__basedir,'app/config/messages-socket'));
 
     var transitionsList = [];
 

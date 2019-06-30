@@ -4,7 +4,7 @@ module.exports = function (app, passport, basePathViews) {
      * Route par défaut choix des équipes
      */
     app.get("/", function (req, res) {
-        res.render(basePathViews + "team-choice");
+        res.render(basePathViews + "game/team-choice");
     });
 
     /**
@@ -17,7 +17,7 @@ module.exports = function (app, passport, basePathViews) {
             res.redirect("/");
             return;
         }
-        res.render(basePathViews + "buzzer", {
+        res.render(basePathViews + "game/buzzer", {
             team: team
         });
     });
@@ -26,7 +26,7 @@ module.exports = function (app, passport, basePathViews) {
      * Ecran de jeu
      */
     app.get("/game", function (req, res) {
-        res.render(basePathViews + "game");
+        res.render(basePathViews + "game/game");
     });
 
     /** Securité */
@@ -35,14 +35,14 @@ module.exports = function (app, passport, basePathViews) {
      * Formulaire de login
      */
     app.get("/login", function (req, res) {
-        res.render(basePathViews + "login");
+        res.render(basePathViews + "game/login");
     });
 
     // Permet d'authentifier l'admin
     app.post('/login',
         passport.authenticate('local', {
-            successRedirect: '/admin',
-            failureRedirect: '/login',
+            successRedirect: '/game/admin',
+            failureRedirect: '/game/login',
             failureFlash: true
         })
     );
@@ -51,7 +51,7 @@ module.exports = function (app, passport, basePathViews) {
      * Télécommande admin pour animer le jeu
      */
     app.get("/admin", function (req, res) {
-        res.render(basePathViews + "admin");
+        res.render(basePathViews + "game/admin");
     });
 
     /**
