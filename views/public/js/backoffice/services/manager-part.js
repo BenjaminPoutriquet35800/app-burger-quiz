@@ -580,6 +580,12 @@ const validateInputsAddition = function () {
         `Merci de renseigner les champs invalides pour l'onglet addition`);
 }
 
+/***************************************/
+/*          BURGER DE LA MORT          */
+/***************************************/
+
+
+
 /***************************/
 /*          COMMUN         */
 /***************************/
