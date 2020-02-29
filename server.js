@@ -20,7 +20,9 @@ app.use(bodyParser.urlencoded({
 
 // session secret
 app.use(session({
-  secret: '6RU8WwGOiQ54sKJtxw1CfmL9Ve5phvQd'
+  secret: '6RU8WwGOiQ54sKJtxw1CfmL9Ve5phvQd',
+  resave: true,
+  saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
