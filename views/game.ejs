@@ -126,8 +126,9 @@
     </div>
 
     <!-- Modal permettant de scanner l'url des équipes & de pouvoir lancer la partie -->
-    <div id="modal-prepare-game" class="overlay">
+    <div id="modal-prepare-game">
         <div class="qr-code-container">
+            <input id="input-url-to-qr-code" type="hidden" value="<%= urlToGenerate %>"/>
             <div class="children">
                 <div class="row justify-content-md-center">
                     <div class="col-12 d-flex justify-content-center">

@@ -281,6 +281,7 @@ const playSound = function (sound) {
  */
 const initQrCode = function () {
     const modalPrepareGame = $('#modal-prepare-game');
+    const inputUrlToConvert = $('#input-url-to-qr-code');
     const btnEveryBodyReady = $('#button-everybody-ready');
     const canvasElement = document.getElementById('qr-code-canvas');
 
@@ -298,11 +299,14 @@ const initQrCode = function () {
 
     btnEveryBodyReady.click(closeModal);
 
+    // Si aucune url n'est fournie on ne va pas plus loin
+    if (inputUrlToConvert.val().trim() === '') {
+        canvasElement.remove();
+        return;
+    }
+
     // Génération du QrCode
-    QRCode.toCanvas(canvasElement, 'http://192.168.1.13:3000/teams', function (error) {
-        if (!error) return;
-        modalPrepareGame.remove();
-    })
+    QRCode.toCanvas(canvasElement, inputUrlToConvert.val());
 }
 
 /**

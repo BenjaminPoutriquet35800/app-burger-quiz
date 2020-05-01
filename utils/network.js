@@ -26,7 +26,16 @@ const getIpAddressServer = function () {
     return ipAddress;
 }
 
+/**
+ * Vérifie si l'hôte passé en paramètre est une adresse de loopback
+ * @param {*} host 
+ */
+const isLocalHostname = function (hostname) {
+    return hostname === "localhost" || hostname === "127.0.0.1";
+}
+
 module.exports = {
-    getIpAddressServer
+    getIpAddressServer,
+    isLocalHostname
 }
 
