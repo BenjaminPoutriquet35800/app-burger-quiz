@@ -12,6 +12,8 @@ const session = require('express-session');
 global.__basedir = __dirname;
 
 app.use(express.static(__dirname + '/views/public/'));
+app.use('/qrcode', express.static(__dirname + '/node_modules/qrcode/build/'));
+
 app.set('views', path.join(__dirname, 'views/'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
@@ -39,7 +41,7 @@ require('./app/game')(io);
 
 // Récupération des méthodes utilitaires concernant le réseau
 const starter = require('./config/starter');
-
-const port = 3000;
+const confServer = require('./config/config-server');
+const port  = confServer.network.port;
 
 http.listen(port, () => starter.messagesToDisplayWhenServerStart(port));

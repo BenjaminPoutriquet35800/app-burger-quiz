@@ -34,7 +34,7 @@ body {
     display: none;
 }
 
-#modal-buzz-first-mayo{
+#modal-buzz-first-mayo {
     position:absolute;
     z-index:99;
     top:60%;
@@ -109,4 +109,12 @@ body {
 
 .ketchup-color {
     background: #C71000;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

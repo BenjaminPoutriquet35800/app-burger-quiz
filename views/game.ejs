@@ -4,6 +4,7 @@
 <head>
     <title>Burger Quiz</title>
     <% include ./partials/header %>
+    <link href="./css/game.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -123,15 +124,47 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal permettant de scanner l'url des équipes & de pouvoir lancer la partie -->
+    <div id="modal-prepare-game" class="overlay">
+        <div class="qr-code-container">
+            <div class="children">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 d-flex justify-content-center">
+                        <img class="title-img-bgq" src="./images/backgrounds/burger_quiz_title.png">
+                    </div>
+                    <div class="col-12">
+                        <p class="title d-flex flex-wrap justify-content-center">
+                            <span class="title-ketchup">Ketchup,</span>
+                            <span class="title-mayo">Mayo,</span>
+                            <span class="title-both">ou les deux ?</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-2">
+                    <canvas id="qr-code-canvas" title="Flash le Qr code pour accèder aux choix des équipes"></canvas>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <input class="btn btn-success btn-lg mr-2" type="button" value="Tout le monde est prêt !"
+                        id="button-everybody-ready" />
+                </div>
+            </div>
+            <div class="container-back"></div>
+        </div>
+    </div>
+
     <!-- Modal Buzz -->
     <div id="modal-buzz"></div>
+
     <!-- Modals permettant d'afficher la première équipe a avoir buzz -->
     <div id="modal-buzz-first-ketchup">
-        <input type="image" src="./images/teams/ketchup.svg"/>
+        <input type="image" src="./images/teams/ketchup.svg" />
     </div>
+
     <div id="modal-buzz-first-mayo">
-        <input type="image" src="./images/teams/mayo.svg"/>
+        <input type="image" src="./images/teams/mayo.svg" />
     </div>
+
     <!-- Modal Transition -->
     <div id="modal-transition" class="container-fluid h-100">
         <div class="row align-items-center h-100">
@@ -145,6 +178,7 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
+    <script src="qrcode/qrcode.min.js"></script>
     <script src="./js/client-game.js"></script>
 
 </html>
