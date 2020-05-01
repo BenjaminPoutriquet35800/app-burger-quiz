@@ -40,7 +40,6 @@
 .qr-code-container .container-back {
     position: absolute;
     background: white;
-    opacity: 0.8;
     height: 70%;
     width: 50%;
     border-radius: 5px;
