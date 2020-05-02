@@ -1,3 +1,5 @@
+const urlResolverService = require('./services/url-resolver');
+
 module.exports = function (app, passport) {
   /**
    * Le chemin de base où se trouve les views
@@ -9,7 +11,7 @@ module.exports = function (app, passport) {
    */
   app.get("/", function (req, res) {
     res.render(basePathViews + "team-choice");
-  });  
+  });
 
   /**
    * Choix des équipes
@@ -30,7 +32,10 @@ module.exports = function (app, passport) {
    * Ecran de jeu
    */
   app.get("/game", function (req, res) {
-    res.render(basePathViews + "game");
+    const urlToGenerate = urlResolverService.retrieveUrlForQrCodeGeneration(req);
+    res.render(basePathViews + "game", {
+      urlToGenerate
+    });
   });
 
   /** Securité */
