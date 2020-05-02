@@ -110,3 +110,38 @@ body {
 .ketchup-color {
     background: #C71000;
 }
+
+/**************************/
+/*       ECRAN BUZZER     */
+/**************************/
+
+.container-buzzer{
+    max-width: 500px;
+}
+
+.container-buzzer #buzz-button{
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Permet de ne pas faire de zoom 
+    Lorsque l'utilisateur est sur mobile et qu'il spam le click
+    FIX : IOS Safari */
+    touch-action: manipulation;
+}
+
+.container-buzzer .lock-buzz-button {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    background-color: #000;
+}
+
+.buzzer-container-team {
+    width: 150px;
+    margin: 10px;
+}
+
+.buzzer-container-team img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

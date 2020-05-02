@@ -67,6 +67,6 @@ const initSocketAndListenEvents = function () {
     socket.emit(messageClientNeedStateBuzzer);
 }
 
-initSocketAndListenEvents();
-
 initEvents();
+
+initSocketAndListenEvents();
