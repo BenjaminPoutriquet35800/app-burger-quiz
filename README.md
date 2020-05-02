@@ -49,7 +49,7 @@ Vous arriverez sur une fenêtre permettant aux joueurs de flasher un **QR-Code**
 
 Une fois que tout le monde est prêt vous pouvez cliquer sur le bouton : **Tout le monde est prêt!**. 
 
-Vous arrivez enfin sur l'écran du jeu :
+Vous arrivez enfin sur l'écran du jeu :blush: :
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25900708/52507593-461e9480-2bf2-11e9-9882-60ca26b7a568.png" height="300"> 
 </p>
