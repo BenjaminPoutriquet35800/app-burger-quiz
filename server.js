@@ -8,11 +8,16 @@ const flash = require('connect-flash')
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-//Variable globale stockant le chemin de base de l'app (compatibilité linux pour les paths)
-global.__basedir = __dirname;
 
-app.use(express.static(__dirname + '/views/public/'));
-app.set('views', path.join(__dirname, 'views/'));
+const confServer = require('./config/config-server');
+
+//Variable globale stockant le chemin de base de l'app (compatibilité linux pour les paths)
+global.__basedir = confServer.rootDir;
+
+app.use(express.static(path.join(confServer.rootDir, '/views/public/')));
+app.use('/qrcode', express.static(path.join(confServer.rootDir, '/node_modules/qrcode/build/')));
+
+app.set('views', path.join(confServer.rootDir, 'views/'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
   extended: true
@@ -39,7 +44,6 @@ require('./app/game')(io);
 
 // Récupération des méthodes utilitaires concernant le réseau
 const starter = require('./config/starter');
-
-const port = 3000;
+const port  = process.env.PORT || confServer.network.port;
 
 http.listen(port, () => starter.messagesToDisplayWhenServerStart(port));

@@ -41,6 +41,15 @@ Vous pouvez à présent accèder à l'application via cette adressse : http://lo
 
 Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/game :
 
+Vous arriverez sur une fenêtre permettant aux joueurs de flasher un **QR-Code** pour qu'ils puissent se rendre directement au choix des équipes :
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/25900708/80866651-1f81c900-8c90-11ea-98b9-3cb6f5e47807.PNG" height="300"> 
+</p>
+
+Une fois que tout le monde est prêt vous pouvez cliquer sur le bouton : **Tout le monde est prêt!**. 
+
+Vous arrivez enfin sur l'écran du jeu :blush: :
 <p align="center">
 <img src="https://user-images.githubusercontent.com/25900708/52507593-461e9480-2bf2-11e9-9882-60ca26b7a568.png" height="300"> 
 </p>

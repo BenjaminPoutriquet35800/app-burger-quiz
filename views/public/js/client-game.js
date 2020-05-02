@@ -277,6 +277,39 @@ const playSound = function (sound) {
 }
 
 /**
+ * Se charge d'initialiser le QrCode avec l'url permettant d'accèder à l'url des équipes
+ */
+const initQrCode = function () {
+    const modalPrepareGame = $('#modal-prepare-game');
+    const inputUrlToConvert = $('#input-url-to-qr-code');
+    const btnEveryBodyReady = $('#button-everybody-ready');
+    const canvasElement = document.getElementById('qr-code-canvas');
+
+    // Se charge de fermer la modal de Qr Code
+    const closeModal = function () {
+        modalPrepareGame.fadeOut('slow', function () {
+            modalPrepareGame.remove();
+
+            // Passage en plein écran
+            const el = document.documentElement;
+            const rfs = el.requestFullscreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+            rfs.call(el);
+        })
+    }
+
+    btnEveryBodyReady.click(closeModal);
+
+    // Si aucune url n'est fournie on ne va pas plus loin
+    if (inputUrlToConvert.val().trim() === '') {
+        canvasElement.remove();
+        return;
+    }
+
+    // Génération du QrCode
+    QRCode.toCanvas(canvasElement, inputUrlToConvert.val());
+}
+
+/**
  * Initialise la socket et ecoute les eventuelles messages
  */
 const initSocketAndListenEvents = function () {
@@ -333,3 +366,5 @@ const initSocketAndListenEvents = function () {
 registerComponents();
 
 initSocketAndListenEvents();
+
+initQrCode();

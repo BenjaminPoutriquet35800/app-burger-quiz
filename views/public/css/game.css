@@ -1,0 +1,52 @@
+.qr-code-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.qr-code-container .children {
+    z-index: 1;
+    width: 50%;
+}
+
+.qr-code-container .title {
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.qr-code-container .title-img-bgq {
+ max-width: 250px;
+ margin-bottom: 40px;
+}
+
+.qr-code-container .title-ketchup {
+    color: #C71000;
+    margin-right: 15px;
+}
+
+.qr-code-container .title-mayo {
+    color: #D1AF29;
+    margin-right: 15px;
+}
+
+.qr-code-container .title-both {
+    color: #B2733F;
+}
+
+.qr-code-container .container-back {
+    position: absolute;
+    background: white;
+    height: 70%;
+    width: 50%;
+    border-radius: 5px;
+}

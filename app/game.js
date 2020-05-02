@@ -1,9 +1,9 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = function (io) {
-    const Team = require(path.join(global.__basedir,'app/models/team'));
-    const Transition = require(path.join(global.__basedir,'app/models/transition'));
-    const messages = require(path.join(global.__basedir,'config/messages-socket'));
+    const Team = require(path.join(global.__basedir, 'app/models/team'));
+    const Transition = require(path.join(global.__basedir, 'app/models/transition'));
+    const messages = require(path.join(global.__basedir, 'config/messages-socket'));
 
     var transitionsList = [];
 
@@ -22,7 +22,7 @@ module.exports = function (io) {
             /**
              *  Se produit lors d'une déconnexion utilisateur
              */
-            socket.on(messages.messageDisconnected, function () {});
+            socket.on(messages.messageDisconnected, function () { });
             /**
              *  On emet dès que le client se connecte et demande l'info des points
              */
@@ -92,7 +92,7 @@ module.exports = function (io) {
              * Se charge d'envoyer un message indiquant que l'équipe
              * A mal répondu à la question
              */
-            socket.on(messages.messageBuzzBadResponse, function() {
+            socket.on(messages.messageBuzzBadResponse, function () {
                 io.emit(messages.messageToClientReceiveBadResponse);
             });
 
@@ -116,11 +116,11 @@ module.exports = function (io) {
      */
     const initTransitionList = function () {
         transitionsList = [];
-        transitionsList.push(new Transition('nuggets-transition.mp4', 1));
-        transitionsList.push(new Transition('selt-pepper-transition.mp4', 2));
-        transitionsList.push(new Transition('menus-transition.mp4', 3)); 
-        transitionsList.push(new Transition('addition-transition.mp4', 4));
-        transitionsList.push(new Transition('death-burger-transition.mp4', 5));
+        transitionsList.push(new Transition('nuggets-transition.mp4', 'Nuggets', 1));
+        transitionsList.push(new Transition('selt-pepper-transition.mp4', "Sel ou Poivre", 2));
+        transitionsList.push(new Transition('menus-transition.mp4', "Les menus", 3));
+        transitionsList.push(new Transition('addition-transition.mp4', "L'addition", 4));
+        transitionsList.push(new Transition('death-burger-transition.mp4', "Burger de la mort", 5));
         // Tri sur la propriété ordre de manière asc
         transitionsList.sort(function (a, b) {
             return a.order - b.order;
@@ -129,6 +129,7 @@ module.exports = function (io) {
 
     // Init de la socket
     initGameSocket();
+
     // On initialise la liste dès le début
     initTransitionList();
 }
