@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const http = require("http").Server(app);
 const io = require("socket.io")(http);
-const serverless = require('serverless-http');
 
 const path = require('path');
 const flash = require('connect-flash')
@@ -44,4 +43,3 @@ require('../app/routes')(app, passport);
 require('../app/game')(io);
 
 module.exports = { app, http, confServer };
-module.exports.handler = serverless(app);
