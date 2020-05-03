@@ -13,15 +13,12 @@
     <div class="container-fluid h-100">
         <div class="row justify-content-end h-25">
             <!-- Affichage du logo de l'équipe -->
-            <%if (team === 'team-mayo') {%>
-            <input type="image" src="./images/teams/mayo.svg" class="img-fluid" width="10%" />
-            <% } 
-                else if (team === 'team-ketchup') { %>
-            <img src="./images/teams/ketchup.svg" class="img-fluid" width="10%" />
-            <% } %>
+            <div class="buzzer-container-team">
+                <img alt="Logo équipe" src="./images/teams/<%= team === 'team-mayo' ? 'mayo.svg' : 'ketchup.svg' %>">
+            </div>
         </div>
         <div class="row justify-content-around h-75" id="buzzer-container">
-            <div class="mx-auto">
+            <div class="mx-auto container-buzzer">
                 <input type="hidden" value="<%= team %>" id="team-hf-val" />
                 <input id="buzz-button" type="image" src="./images/buzzer/burger-buzzer.png" />
             </div>

@@ -14,7 +14,6 @@
 }
 
 .qr-code-container .children {
-    z-index: 1;
     width: 50%;
 }
 
@@ -41,12 +40,4 @@
 
 .qr-code-container .title-both {
     color: #B2733F;
-}
-
-.qr-code-container .container-back {
-    position: absolute;
-    background: white;
-    height: 70%;
-    width: 50%;
-    border-radius: 5px;
 }
