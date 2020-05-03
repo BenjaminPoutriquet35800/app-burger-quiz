@@ -44,7 +44,7 @@ Ouvrir un second onglet puis taper l'adresse suivante : http://localhost:3000/ga
 Vous arriverez sur une fenêtre permettant aux joueurs de flasher un **QR-Code** pour qu'ils puissent se rendre directement au choix des équipes :
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/25900708/80866651-1f81c900-8c90-11ea-98b9-3cb6f5e47807.PNG" height="300"> 
+<img src="https://user-images.githubusercontent.com/25900708/80916842-8fa95100-8d5b-11ea-8a51-c097a5bee720.PNG" height="300"> 
 </p>
 
 Une fois que tout le monde est prêt vous pouvez cliquer sur le bouton : **Tout le monde est prêt!**. 
