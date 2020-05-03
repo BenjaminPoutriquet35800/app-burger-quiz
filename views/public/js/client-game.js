@@ -20,6 +20,11 @@ var socket = null;
  */
 var teamFirstBuzz = null;
 
+/**
+ * Indique si la transition est en cours
+ */
+let isTransitionRunning = false;
+
 const mayo = 'team-mayo'
 const ketchup = 'team-ketchup';
 const componentsMayo = [];
@@ -180,6 +185,8 @@ const populateCollectionComponents = function (collection, containerId) {
  * @param {*} teamName Le nom de l'équipe
  */
 const receiveBuzzAndInteractOnView = function (teamName) {
+    if (isTransitionRunning)
+        return;
     let color = null;
     let sound = null;
     if (teamName === ketchup) {
@@ -233,6 +240,7 @@ const pinupTeamBuzzFirstOnView = function (teamName) {
 const showMainBackgroundAndHideTransition = function () {
     $mainBackground.show();
     $modalTransition.hide();
+    isTransitionRunning = false;
 }
 
 /**
@@ -242,6 +250,7 @@ const showMainBackgroundAndHideTransition = function () {
 const receiveOrderForTransition = function (transitionName) {
     $mainBackground.hide();
     $modalTransition.show();
+    isTransitionRunning = true;
     $sourceTransition.attr('src', baseDirVideos + transitionName);
     $videoTransitionContainer.load();
     $videoTransitionContainer.get(0).play();
