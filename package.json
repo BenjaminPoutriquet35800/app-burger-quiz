@@ -19,7 +19,7 @@
     "passport-local": "^1.0.0",
     "qrcode": "^1.4.4",
     "serverless-http": "^2.3.2",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.4.0"
   },
   "author": "Poutriquet Benjamin",
   "license": "MIT"
